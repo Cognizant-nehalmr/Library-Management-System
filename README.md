@@ -1,7 +1,9 @@
 # Library Management System (LMS)
 
 ## Overview
-The Library Management System (LMS) is a RESTful API-based backend application designed to manage book collections, member registrations, borrowing and returning of books, and overdue tracking. It is built using Spring Boot and supports relational databases like MySQL and PostgreSQL.
+The Library Management System (LMS) is a RESTful API-based backend application designed to manage book collections, member registrations, borrowing and returning of books, overdue tracking, and notifications. It is built using Spring Boot and supports relational databases like MySQL and PostgreSQL.
+
+---
 
 ## Features
 - **Book Management**: Add, update, delete, and search books.
@@ -10,11 +12,148 @@ The Library Management System (LMS) is a RESTful API-based backend application d
 - **Overdue and Fines**: Monitor overdue books and calculate fines.
 - **Notifications**: Send alerts for due dates and fines.
 
+---
+
 ## Technologies Used
 - **Backend**: Spring Boot (Java)
 - **Database**: MySQL/PostgreSQL (H2 for development)
+- **ORM**: Hibernate/JPA
 - **Testing**: JUnit, Mockito
 - **API Documentation**: Swagger/OpenAPI
+- **Logging**: SLF4J with Logback
+
+---
+
+## REST API Endpoints
+
+### Book Management
+- `GET /api/books`: Fetch all books.
+- `GET /api/books/{id}`: Fetch a book by ID.
+- `POST /api/books`: Add a new book.
+- `PUT /api/books/{id}`: Update book details.
+- `DELETE /api/books/{id}`: Delete a book.
+- `GET /api/books/search?title={title}&author={author}`: Search books by title and/or author.
+
+### Member Management
+- `GET /api/members`: Fetch all members.
+- `GET /api/members/{id}`: Fetch a member by ID.
+- `POST /api/members`: Add a new member.
+- `PUT /api/members/{id}`: Update member details.
+- `DELETE /api/members/{id}`: Delete a member.
+
+### Borrowing Transactions
+- `GET /api/transactions`: Fetch all transactions.
+- `GET /api/transactions/{id}`: Fetch a transaction by ID.
+- `POST /api/transactions`: Borrow a book.
+- `PUT /api/transactions/return/{id}`: Return a borrowed book.
+
+### Fines
+- `GET /api/fines`: Fetch all fines.
+- `GET /api/fines/{id}`: Fetch a fine by ID.
+- `POST /api/fines`: Create a new fine.
+- `POST /api/fines/pay/{id}`: Pay a fine.
+- `GET /api/fines/member/{memberId}`: Fetch fines for a specific member.
+
+### Notifications
+- `GET /api/notifications`: Fetch all notifications.
+- `GET /api/notifications/{id}`: Fetch a notification by ID.
+- `POST /api/notifications`: Send a notification.
+
+---
+
+## Entity Properties
+
+### Book
+- `bookId` (Long): Unique identifier.
+- `title` (String): Title of the book.
+- `author` (String): Author of the book.
+- `genre` (String): Genre of the book.
+- `isbn` (String): ISBN number.
+- `yearPublished` (int): Year of publication.
+- `availableCopies` (int): Number of available copies.
+
+### Member
+- `memberId` (Long): Unique identifier.
+- `name` (String): Name of the member.
+- `email` (String): Email address.
+- `phone` (String): Phone number.
+- `address` (String): Address of the member.
+- `membershipStatus` (Enum): Membership status (`ACTIVE`, `INACTIVE`).
+
+### BorrowingTransaction
+- `transactionId` (Long): Unique identifier.
+- `book` (Book): Associated book.
+- `member` (Member): Associated member.
+- `borrowDate` (LocalDate): Date of borrowing.
+- `returnDate` (LocalDate): Date of return.
+- `status` (Enum): Transaction status (`BORROWED`, `RETURNED`).
+
+### Fine
+- `fineId` (Long): Unique identifier.
+- `member` (Member): Associated member.
+- `amount` (double): Fine amount.
+- `status` (Enum): Fine status (`PAID`, `PENDING`).
+- `transactionDate` (LocalDate): Date of fine creation.
+
+### Notification
+- `notificationId` (Long): Unique identifier.
+- `member` (Member): Associated member.
+- `message` (String): Notification message.
+- `dateSent` (LocalDate): Date the notification was sent.
+
+---
+
+## Database Schema
+
+### `books` Table
+| Column            | Type        | Constraints          |
+|--------------------|-------------|----------------------|
+| `book_id`         | BIGINT      | Primary Key          |
+| `title`           | VARCHAR(255)| Not Null             |
+| `author`          | VARCHAR(255)| Not Null             |
+| `genre`           | VARCHAR(255)|                      |
+| `isbn`            | VARCHAR(255)| Unique               |
+| `year_published`  | INT         |                      |
+| `available_copies`| INT         |                      |
+
+### `members` Table
+| Column              | Type        | Constraints          |
+|----------------------|-------------|----------------------|
+| `member_id`         | BIGINT      | Primary Key          |
+| `name`              | VARCHAR(255)| Not Null             |
+| `email`             | VARCHAR(255)| Unique               |
+| `phone`             | VARCHAR(255)|                      |
+| `address`           | VARCHAR(255)|                      |
+| `membership_status` | VARCHAR(255)| Enum (`ACTIVE`, `INACTIVE`) |
+
+### `borrowing_transactions` Table
+| Column            | Type        | Constraints          |
+|--------------------|-------------|----------------------|
+| `transaction_id`  | BIGINT      | Primary Key          |
+| `book_id`         | BIGINT      | Foreign Key (`books`)|
+| `member_id`       | BIGINT      | Foreign Key (`members`)|
+| `borrow_date`     | DATE        |                      |
+| `return_date`     | DATE        |                      |
+| `status`          | VARCHAR(255)| Enum (`BORROWED`, `RETURNED`) |
+
+### `fines` Table
+| Column            | Type        | Constraints          |
+|--------------------|-------------|----------------------|
+| `fine_id`         | BIGINT      | Primary Key          |
+| `member_id`       | BIGINT      | Foreign Key (`members`)|
+| `amount`          | DOUBLE      |                      |
+| `status`          | VARCHAR(255)| Enum (`PAID`, `PENDING`) |
+| `transaction_date`| DATE        |                      |
+
+### `notifications` Table
+| Column            | Type        | Constraints          |
+|--------------------|-------------|----------------------|
+| `notification_id` | BIGINT      | Primary Key          |
+| `member_id`       | BIGINT      | Foreign Key (`members`)|
+| `message`         | VARCHAR(255)|                      |
+| `date_sent`       | DATE        |                      |
+
+---
 
 ## Prerequisites
 - Java 17 or higher
