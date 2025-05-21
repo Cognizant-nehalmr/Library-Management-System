@@ -1,0 +1,4 @@
+com\example\lms\controller\NotificationControllerTest.class
+com\example\lms\controller\MemberControllerTest.class
+com\example\lms\controller\BookControllerTest.class
+com\example\lms\service\BookServiceTest.class
