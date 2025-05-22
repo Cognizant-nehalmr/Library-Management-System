@@ -24,6 +24,41 @@ The Library Management System (LMS) is a RESTful API-based backend application d
 
 ---
 
+## Folder Structure
+
+```
+LMS-Monolithic/
+├── README.md                   # Project documentation
+├── pom.xml                     # Maven configuration file
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── lms/
+│   │   │               ├── LmsApplication.java       # Main application entry point
+│   │   │               ├── config/                   # Configuration files
+│   │   │               ├── controller/               # REST API controllers
+│   │   │               ├── entity/                   # JPA entities
+│   │   │               ├── repository/               # Spring Data JPA repositories
+│   │   │               └── service/                  # Service layer
+│   │   └── resources/
+│   │       ├── application.properties                # Application configuration
+│   │       ├── data.sql                              # Sample data (optional)
+│   │       └── schema.sql                            # Database schema (optional)
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── example/
+│                   └── lms/
+│                       ├── controller/               # Controller tests
+│                       └── service/                  # Service tests
+└── target/                                            # Compiled output and packaged application
+    ├── LMS-1.0-SNAPSHOT.jar                          # Packaged JAR file
+    ├── classes/                                       # Compiled classes
+    ├── surefire-reports/                              # Test reports
+```
+
 ## REST API Endpoints
 
 ### Book Management
