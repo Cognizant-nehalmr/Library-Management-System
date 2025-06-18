@@ -1,0 +1,3 @@
+com\library\gateway\ApiGatewayApplication.class
+com\library\gateway\config\OpenApiConfig.class
+com\library\gateway\config\SecurityConfig.class

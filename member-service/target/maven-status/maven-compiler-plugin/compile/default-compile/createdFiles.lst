@@ -1,0 +1,9 @@
+com\library\member\MemberServiceApplication.class
+com\library\member\entity\Member$MembershipStatus.class
+com\library\member\controller\MemberController.class
+com\library\member\repository\MemberRepository.class
+com\library\member\entity\Member.class
+com\library\member\dto\MemberDTO.class
+com\library\member\exception\GlobalExceptionHandler.class
+com\library\member\service\MemberService.class
+com\library\member\config\OpenApiConfig.class
