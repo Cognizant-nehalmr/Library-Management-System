@@ -1,225 +1,340 @@
-# Library Management System (LMS)
+# Library Management System - Microservices Architecture
 
-## Overview
-The Library Management System (LMS) is a RESTful API-based backend application designed to manage book collections, member registrations, borrowing and returning of books, overdue tracking, and notifications. It is built using Spring Boot and supports relational databases like MySQL and PostgreSQL.
-
----
-
-## Features
-- **Book Management**: Add, update, delete, and search books.
-- **Member Management**: Register and manage library members.
-- **Borrowing and Return**: Track book borrowing and return processes.
-- **Overdue and Fines**: Monitor overdue books and calculate fines.
-- **Notifications**: Send alerts for due dates and fines.
+This is a comprehensive Library Management System built using Java Spring Boot with a microservices architecture. The system allows users to manage book collections, member registrations, book borrowing and return, and overdue tracking.
 
 ---
 
-## Technologies Used
-- **Backend**: Spring Boot (Java)
-- **Database**: MySQL/PostgreSQL (H2 for development)
-- **ORM**: Hibernate/JPA
-- **Testing**: JUnit, Mockito
-- **API Documentation**: Swagger/OpenAPI
-- **Logging**: SLF4J with Logback
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Architecture Diagram](#architecture-diagram)
+3. [Microservices & Responsibilities](#microservices--responsibilities)
+4. [Database Schema & Entities](#database-schema--entities)
+5. [API Endpoints](#api-endpoints)
+6. [Setup Instructions](#setup-instructions)
+7. [Configuration & Environment](#configuration--environment)
+8. [Production-Ready Features](#production-ready-features)
+9. [Inter-Service Communication](#inter-service-communication)
+10. [Health Checks & Observability](#health-checks--observability)
+11. [Error Handling & Validation](#error-handling--validation)
+12. [Caching, Async, and Scheduled Tasks](#caching-async-and-scheduled-tasks)
+13. [Email/Notification Flow](#emailnotification-flow)
+14. [Deployment & Production Best Practices](#deployment--production-best-practices)
+15. [API Documentation](#api-documentation)
+16. [Contributing](#contributing)
+17. [License](#license)
 
 ---
 
-## REST API Endpoints
+## Project Overview
 
-### Book Management
-- `GET /api/books`: Fetch all books.
-- `GET /api/books/{id}`: Fetch a book by ID.
-- `POST /api/books`: Add a new book.
-- `PUT /api/books/{id}`: Update book details.
-- `DELETE /api/books/{id}`: Delete a book.
-- `GET /api/books/search?title={title}&author={author}`: Search books by title and/or author.
-
-### Member Management
-- `GET /api/members`: Fetch all members.
-- `GET /api/members/{id}`: Fetch a member by ID.
-- `POST /api/members`: Add a new member.
-- `PUT /api/members/{id}`: Update member details.
-- `DELETE /api/members/{id}`: Delete a member.
-
-### Borrowing Transactions
-- `GET /api/transactions`: Fetch all transactions.
-- `GET /api/transactions/{id}`: Fetch a transaction by ID.
-- `POST /api/transactions`: Borrow a book.
-- `PUT /api/transactions/return/{id}`: Return a borrowed book.
-
-### Fines
-- `GET /api/fines`: Fetch all fines.
-- `GET /api/fines/{id}`: Fetch a fine by ID.
-- `POST /api/fines`: Create a new fine.
-- `POST /api/fines/pay/{id}`: Pay a fine.
-- `GET /api/fines/member/{memberId}`: Fetch fines for a specific member.
-
-### Notifications
-- `GET /api/notifications`: Fetch all notifications.
-- `GET /api/notifications/{id}`: Fetch a notification by ID.
-- `POST /api/notifications`: Send a notification.
+- **Framework**: Spring Boot 3.2.0
+- **Java Version**: JDK 21
+- **Database**: MySQL 8.0
+- **Service Discovery**: Netflix Eureka Server
+- **API Gateway**: Spring Cloud Gateway
+- **Inter-service Communication**: OpenFeign
+- **ORM**: Spring Data JPA
+- **API Documentation**: OpenAPI 3.0 (Swagger)
+- **Caching**: Caffeine Cache
+- **Email Service**: Spring Mail with Thymeleaf templates
+- **Validation**: Bean Validation
+- **Build Tool**: Maven
 
 ---
 
-## Entity Properties
+## Architecture Diagram
 
-### Book
-- `bookId` (Long): Unique identifier.
-- `title` (String): Title of the book.
-- `author` (String): Author of the book.
-- `genre` (String): Genre of the book.
-- `isbn` (String): ISBN number.
-- `yearPublished` (int): Year of publication.
-- `availableCopies` (int): Number of available copies.
-
-### Member
-- `memberId` (Long): Unique identifier.
-- `name` (String): Name of the member.
-- `email` (String): Email address.
-- `phone` (String): Phone number.
-- `address` (String): Address of the member.
-- `membershipStatus` (Enum): Membership status (`ACTIVE`, `INACTIVE`).
-
-### BorrowingTransaction
-- `transactionId` (Long): Unique identifier.
-- `book` (Book): Associated book.
-- `member` (Member): Associated member.
-- `borrowDate` (LocalDate): Date of borrowing.
-- `returnDate` (LocalDate): Date of return.
-- `status` (Enum): Transaction status (`BORROWED`, `RETURNED`).
-
-### Fine
-- `fineId` (Long): Unique identifier.
-- `member` (Member): Associated member.
-- `amount` (double): Fine amount.
-- `status` (Enum): Fine status (`PAID`, `PENDING`).
-- `transactionDate` (LocalDate): Date of fine creation.
-
-### Notification
-- `notificationId` (Long): Unique identifier.
-- `member` (Member): Associated member.
-- `message` (String): Notification message.
-- `dateSent` (LocalDate): Date the notification was sent.
-
----
-
-## Database Schema
-
-### `books` Table
-| Column            | Type        | Constraints          |
-|--------------------|-------------|----------------------|
-| `book_id`         | BIGINT      | Primary Key          |
-| `title`           | VARCHAR(255)| Not Null             |
-| `author`          | VARCHAR(255)| Not Null             |
-| `genre`           | VARCHAR(255)|                      |
-| `isbn`            | VARCHAR(255)| Unique               |
-| `year_published`  | INT         |                      |
-| `available_copies`| INT         |                      |
-
-### `members` Table
-| Column              | Type        | Constraints          |
-|----------------------|-------------|----------------------|
-| `member_id`         | BIGINT      | Primary Key          |
-| `name`              | VARCHAR(255)| Not Null             |
-| `email`             | VARCHAR(255)| Unique               |
-| `phone`             | VARCHAR(255)|                      |
-| `address`           | VARCHAR(255)|                      |
-| `membership_status` | VARCHAR(255)| Enum (`ACTIVE`, `INACTIVE`) |
-
-### `borrowing_transactions` Table
-| Column            | Type        | Constraints          |
-|--------------------|-------------|----------------------|
-| `transaction_id`  | BIGINT      | Primary Key          |
-| `book_id`         | BIGINT      | Foreign Key (`books`)|
-| `member_id`       | BIGINT      | Foreign Key (`members`)|
-| `borrow_date`     | DATE        |                      |
-| `return_date`     | DATE        |                      |
-| `status`          | VARCHAR(255)| Enum (`BORROWED`, `RETURNED`) |
-
-### `fines` Table
-| Column            | Type        | Constraints          |
-|--------------------|-------------|----------------------|
-| `fine_id`         | BIGINT      | Primary Key          |
-| `member_id`       | BIGINT      | Foreign Key (`members`)|
-| `amount`          | DOUBLE      |                      |
-| `status`          | VARCHAR(255)| Enum (`PAID`, `PENDING`) |
-| `transaction_date`| DATE        |                      |
-
-### `notifications` Table
-| Column            | Type        | Constraints          |
-|--------------------|-------------|----------------------|
-| `notification_id` | BIGINT      | Primary Key          |
-| `member_id`       | BIGINT      | Foreign Key (`members`)|
-| `message`         | VARCHAR(255)|                      |
-| `date_sent`       | DATE        |                      |
-
----
-
-## Prerequisites
-- Java 17 or higher
-- Maven 3.8+
-- MySQL/PostgreSQL database
-
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd LMS
-   ```
-2. Configure the database in `src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/lmsdb
-   spring.datasource.username=<your-username>
-   spring.datasource.password=<your-password>
-   spring.jpa.hibernate.ddl-auto=update
-   ```
-3. Build and run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
-4. Access the API documentation at `http://localhost:8080/swagger-ui.html`.
-
-## Testing
-Run the tests using Maven:
-```bash
-mvn test
+```mermaid
+graph TD
+    A[API Gateway 8080] -->|REST| B(Book Service 8081)
+    A -->|REST| C(Member Service 8082)
+    A -->|REST| D(Transaction Service 8083)
+    A -->|REST| E(Fine Service 8084)
+    A -->|REST| F(Notification Service 8085)
+    B <--> G[(Book DB)]
+    C <--> H[(Member DB)]
+    D <--> I[(Transaction DB)]
+    E <--> J[(Fine DB)]
+    F <--> K[(Notification DB)]
+    A --> L[Eureka Server 8761]
+    B --> L
+    C --> L
+    D --> L
+    E --> L
+    F --> L
 ```
 
-## Advanced Features
-- **API Endpoints**: Comprehensive RESTful APIs for managing books, members, transactions, fines, and notifications.
-- **Security**: Configured with Spring Security for authentication and authorization.
-- **Logging**: Centralized logging using SLF4J and Logback, with separate logs for development and production environments.
-- **Database Schema**: Automatically managed by Hibernate, with support for schema updates.
+- **API Gateway**: Central entry point, routing, load balancing, security
+- **Eureka Server**: Service discovery
+- **Each Service**: Own DB, isolated domain logic
+- **Inter-service**: REST (OpenFeign), async (future: events)
 
-## Deployment
-1. **Build the Application**:
-   ```bash
-   mvn clean package
-   ```
-   This generates a JAR file in the `target/` directory.
+---
 
-2. **Run the Application**:
-   ```bash
-   java -jar target/LMS-1.0-SNAPSHOT.jar
-   ```
+## Microservices & Responsibilities
 
-3. **Environment Variables**:
-   Set the following environment variables for production:
-   ```bash
-   export SPRING_PROFILES_ACTIVE=prod
-   export DATABASE_URL=jdbc:mysql://<production-db-url>:3306/lmsdb
-   export DATABASE_USERNAME=<your-username>
-   export DATABASE_PASSWORD=<your-password>
-   ```
+| Service              | Port  | Responsibilities                                    |
+|----------------------|-------|-----------------------------------------------------|
+| API Gateway          | 8080  | Routing, security, Swagger aggregation              |
+| Book Service         | 8081  | Book CRUD, search, inventory                        |
+| Member Service       | 8082  | Member CRUD, status, profile                        |
+| Transaction Service  | 8083  | Borrow/return, due/overdue, transaction history     |
+| Fine Service         | 8084  | Fine calculation, payment, overdue tracking         |
+| Notification Service | 8085  | Email/SMS, reminders, alerts, notification history  |
+| Eureka Server        | 8761  | Service registry/discovery                          |
 
-4. **Monitor Logs**:
-   Logs are stored in the `logs/` directory. Use the following command to view logs in real-time:
-   ```bash
-   tail -f logs/lms-production.log
-   ```
+---
+
+## Database Schema & Entities
+
+### Book Service (`book_service_db`)
+- **books**
+  | id | title | author | genre | isbn | year_published | available_copies | total_copies |
+  |----|-------|--------|-------|------|---------------|------------------|--------------|
+
+### Member Service (`member_service_db`)
+- **members**
+  | id | name | email | phone | address | membership_status |
+  |----|------|-------|-------|---------|------------------|
+
+### Transaction Service (`transaction_service_db`)
+- **borrowing_transactions**
+  | id | member_id | book_id | borrow_date | due_date | return_date | status |
+  |----|-----------|---------|------------|----------|-------------|--------|
+
+### Fine Service (`fine_service_db`)
+- **fines**
+  | id | member_id | transaction_id | amount | status | issued_date | paid_date |
+  |----|-----------|----------------|--------|--------|-------------|----------|
+
+### Notification Service (`notification_service_db`)
+- **notifications**
+  | id | member_id | message | type | status | recipient_email | subject | created_at |
+  |----|-----------|---------|------|--------|----------------|---------|------------|
+
+---
+
+## API Endpoints
+
+### Through API Gateway (http://localhost:8080)
+
+#### Book Management
+- `GET /api/books` - Get all books
+- `GET /api/books/{id}` - Get book by ID
+- `GET /api/books/search?title=&author=&genre=` - Search books
+- `POST /api/books` - Create new book
+- `PUT /api/books/{id}` - Update book
+- `DELETE /api/books/{id}` - Delete book
+
+#### Member Management
+- `GET /api/members` - Get all members
+- `GET /api/members/{id}` - Get member by ID
+- `POST /api/members` - Register new member
+- `PUT /api/members/{id}` - Update member
+- `PUT /api/members/{id}/status` - Update membership status
+
+#### Transaction Management
+- `GET /api/transactions` - Get all transactions
+- `GET /api/transactions/member/{memberId}` - Get member's transactions
+- `POST /api/transactions/borrow` - Borrow a book
+- `PUT /api/transactions/{id}/return` - Return a book
+- `GET /api/transactions/overdue` - Get overdue transactions
+
+#### Fine Management
+- `GET /api/fines` - Get all fines
+- `GET /api/fines/member/{memberId}` - Get member's fines
+- `POST /api/fines` - Create fine
+- `PUT /api/fines/{id}/pay` - Pay fine
+
+#### Notification Management
+- `GET /api/notifications` - Get all notifications
+- `GET /api/notifications/{id}` - Get notification by ID
+- `GET /api/notifications/member/{memberId}` - Get member's notifications
+- `POST /api/notifications` - Create notification
+- `POST /api/notifications/due-reminder` - Create due reminder
+- `POST /api/notifications/overdue-alert` - Create overdue alert
+- `POST /api/notifications/fine-notice` - Create fine notice
+- `GET /api/notifications/stats` - Get notification statistics
+
+#### Example: Get Book by ID
+```http
+GET /api/books/1
+Response: 200 OK
+{
+  "id": 1,
+  "title": "The White Tiger",
+  "author": "Aravind Adiga",
+  "genre": "Fiction",
+  "isbn": "978-1-4165-6259-7",
+  "year_published": 2008,
+  "available_copies": 5,
+  "total_copies": 5
+}
+```
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+- Java 21 or higher
+- Maven 3.9+
+- MySQL 8.0+
+- SMTP Server configuration (for email notifications)
+
+### Database Setup
+```bash
+# Run the SQL scripts to create databases and tables
+mysql -u root -p < scripts/01-create-databases.sql
+mysql -u root -p < scripts/02-seed-data.sql
+```
+
+### Start Eureka Server
+- Download and start Netflix Eureka Server on port 8761
+- Or use Spring Cloud Eureka Server starter
+
+### Configure Database Connection
+- Update database credentials in each service's `application.yml`
+- Default: username=root, password=root
+
+### Start Services
+```bash
+# Start services in this order
+cd eureka-server && mvn spring-boot:run
+cd api-gateway && mvn spring-boot:run
+cd book-service && mvn spring-boot:run  
+cd member-service && mvn spring-boot:run
+cd transaction-service && mvn spring-boot:run
+cd fine-service && mvn spring-boot:run
+cd notification-service && mvn spring-boot:run
+```
+
+### Configure Email Settings (Optional)
+- Update notification-service application.yml with your SMTP settings
+- Set environment variables: MAIL_USERNAME and MAIL_PASSWORD
+
+### Automated Startup
+- Use `scripts/start-services.sh` to initialize DB, start all services, and check health.
+
+---
+
+## Configuration & Environment
+
+- **Database**: Set DB credentials in each service's `application.yml`
+- **Email**: Set `MAIL_USERNAME` and `MAIL_PASSWORD` as env vars for notification-service
+- **Ports**: Each service runs on a fixed port (see above)
+- **Profiles**: Use `dev`, `prod` profiles for environment-specific config
+- **Startup**: Use `scripts/start-services.sh` for full stack startup (see logs/ for output)
+
+---
+
+## Production-Ready Features
+
+- **Service Discovery**: Netflix Eureka
+- **API Gateway**: Spring Cloud Gateway (rate limiting, CORS, security headers)
+- **Database**: MySQL 8.0, connection pooling, separate DB per service
+- **ORM**: Spring Data JPA, schema auto-migration
+- **Caching**: Caffeine (in-memory)
+- **Async Processing**: @Async, scheduled jobs for reminders
+- **Email**: Spring Mail + Thymeleaf, SMTP config via env vars
+- **Validation**: Bean Validation (JSR-380)
+- **API Docs**: OpenAPI 3.0 (Swagger UI per service)
+- **Monitoring**: Spring Boot Actuator, `/actuator/health`, `/actuator/info`
+- **Logging**: Structured logs, correlation IDs, logback config
+- **Error Handling**: Global exception handler, consistent error responses
+- **Security**: CORS, security headers, (future: JWT auth)
+- **Config Management**: Externalized via `application.yml`, profiles, env vars
+- **Observability**: Health, metrics, logs, future: distributed tracing
+
+---
+
+## Inter-Service Communication
+
+- **Synchronous**: REST via OpenFeign clients
+- **Service Discovery**: Eureka registry
+- **Load Balancing**: Ribbon (client-side)
+- **Error Handling**: Circuit breaker (future: Resilience4j)
+- **Async**: Scheduled jobs for reminders, future: event-driven (Kafka/RabbitMQ)
+
+---
+
+## Health Checks & Observability
+
+- **Actuator Endpoints**: `/actuator/health`, `/actuator/info`, `/actuator/metrics`
+- **Service Health**: Checked by startup script and via Eureka
+- **Logging**: All logs in `logs/` directory, per-service log files
+- **Monitoring**: Ready for integration with ELK, Prometheus, Grafana
+
+---
+
+## Error Handling & Validation
+
+- **Global Exception Handler**: Consistent error format
+- **Validation**: Request body/params validated, errors returned as 400
+- **Sample Error Response**:
+```json
+{
+  "timestamp": "2025-06-18T12:00:00Z",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Validation failed: title must not be blank",
+  "path": "/api/books"
+}
+```
+
+---
+
+## Caching, Async, and Scheduled Tasks
+
+- **Caching**: Caffeine for book/member lookups
+- **Async**: Notification sending, scheduled reminders
+- **Scheduled**: Overdue checks, fine calculation, daily reminders
+
+---
+
+## Email/Notification Flow
+
+- **Templates**: HTML via Thymeleaf (`notification-service/resources/templates/`)
+- **Types**: Welcome, due reminder, overdue alert, fine notice
+- **Retry**: Failed notifications retried with exponential backoff
+- **Stats**: `/api/notifications/stats` for analytics
+
+---
+
+## Deployment & Production Best Practices
+
+- **Build**: Maven, multi-module
+- **Run**: `scripts/start-services.sh` (handles DB, logs, health checks)
+- **Logs**: Per-service, rotate and monitor
+- **Security**: Use strong DB/email passwords, restrict ports, enable HTTPS in prod
+- **Scaling**: Each service can be scaled independently
+- **Future**: Docker/K8s, CI/CD, JWT auth, distributed tracing
+
+---
+
+## API Documentation
+
+Each service provides comprehensive API documentation using OpenAPI 3.0 (Swagger):
+
+- **API Gateway Swagger UI**: http://localhost:8080/swagger-ui.html
+- **Book Service**: http://localhost:8081/swagger-ui.html
+- **Member Service**: http://localhost:8082/swagger-ui.html
+- **Transaction Service**: http://localhost:8083/swagger-ui.html
+- **Fine Service**: http://localhost:8084/swagger-ui.html
+- **Notification Service**: http://localhost:8085/swagger-ui.html
+
+---
 
 ## Contributing
-Contributions are welcome! Please see the `CONTRIBUTING.md` file for guidelines.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+---
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+This open-source project is available under the [MIT License](LICENSE).

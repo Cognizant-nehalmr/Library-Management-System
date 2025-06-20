@@ -1,10 +1,5 @@
 echo "Starting Library Management System Services..."
 
-# Initialize databases and seed data
-echo "Initializing databases and seeding data..."
-mysql -u root -p < scripts/01-create-databases.sql
-mysql -u root -p < scripts/02-seed-data.sql
-
 # Function to check if a service is running
 check_service() {
     local port=$1
@@ -85,3 +80,4 @@ if $all_healthy; then
 else
     echo "⚠️  Some services failed to start. Check the logs in the 'logs' directory."
 fi
+
