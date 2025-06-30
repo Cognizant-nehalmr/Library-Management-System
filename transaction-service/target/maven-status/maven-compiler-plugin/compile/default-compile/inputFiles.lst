@@ -1,8 +1,0 @@
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\client\BookServiceClient.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\controller\TransactionController.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\entity\BorrowingTransaction.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\dto\BorrowingTransactionDTO.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\repository\BorrowingTransactionRepository.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\TransactionServiceApplication.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\service\TransactionService.java
-C:\Users\2407071\Desktop\GenC-Project\Library-Management-System-Microservices-Architecture\transaction-service\src\main\java\com\library\transaction\config\OpenApiConfig.java
