@@ -1,0 +1,60 @@
+{
+  "info": {
+    "_postman_id": "b1e2c3d4-5678-90ab-cdef-1234567890ab",
+    "name": "LMS-API-Tester",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for testing all endpoints of the Library Management System via API Gateway."
+  },
+  "item": [
+    {
+      "name": "Book Management",
+      "item": [
+        { "name": "Get All Books", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/books", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books"] } } },
+        { "name": "Get Book by ID", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/books/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books", "1"] } } },
+        { "name": "Search Books", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/books/search?title=&author=&genre=", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books", "search"], "query": [ { "key": "title", "value": "" }, { "key": "author", "value": "" }, { "key": "genre", "value": "" } ] } } },
+        { "name": "Create Book", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Sample Book\",\n  \"author\": \"Author Name\",\n  \"genre\": \"Fiction\",\n  \"isbn\": \"1234567890\",\n  \"year_published\": 2024,\n  \"available_copies\": 5\n}" }, "url": { "raw": "http://localhost:8080/api/books", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books"] } } },
+        { "name": "Update Book", "request": { "method": "PUT", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Updated Book\",\n  \"author\": \"Updated Author\",\n  \"genre\": \"Non-Fiction\",\n  \"isbn\": \"1234567890\",\n  \"year_published\": 2025,\n  \"available_copies\": 10\n}" }, "url": { "raw": "http://localhost:8080/api/books/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books", "1"] } } },
+        { "name": "Delete Book", "request": { "method": "DELETE", "header": [], "url": { "raw": "http://localhost:8080/api/books/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "books", "1"] } } }
+      ]
+    },
+    {
+      "name": "Member Management",
+      "item": [
+        { "name": "Get All Members", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/members", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "members"] } } },
+        { "name": "Get Member by ID", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/members/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "members", "1"] } } },
+        { "name": "Register Member", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"1234567890\",\n  \"address\": \"123 Main St\",\n  \"membershipStatus\": \"ACTIVE\"\n}" }, "url": { "raw": "http://localhost:8080/api/members", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "members"] } } },
+        { "name": "Update Member", "request": { "method": "PUT", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"9876543210\",\n  \"address\": \"456 Main St\",\n  \"membershipStatus\": \"ACTIVE\"\n}" }, "url": { "raw": "http://localhost:8080/api/members/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "members", "1"] } } },
+        { "name": "Update Membership Status", "request": { "method": "PUT", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"membershipStatus\": \"INACTIVE\"\n}" }, "url": { "raw": "http://localhost:8080/api/members/1/status", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "members", "1", "status"] } } }
+      ]
+    },
+    {
+      "name": "Transaction Management",
+      "item": [
+        { "name": "Get All Transactions", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/transactions", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "transactions"] } } },
+        { "name": "Get Member's Transactions", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/transactions/member/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "transactions", "member", "1"] } } },
+        { "name": "Borrow Book", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"memberId\": 1,\n  \"bookId\": 1,\n  \"borrowDate\": \"2025-06-30\"\n}" }, "url": { "raw": "http://localhost:8080/api/transactions/borrow", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "transactions", "borrow"] } } },
+        { "name": "Return Book", "request": { "method": "PUT", "header": [], "url": { "raw": "http://localhost:8080/api/transactions/1/return", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "transactions", "1", "return"] } } },
+        { "name": "Get Overdue Transactions", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/transactions/overdue", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "transactions", "overdue"] } } }
+      ]
+    },
+    {
+      "name": "Fine Management",
+      "item": [
+        { "name": "Get All Fines", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/fines", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "fines"] } } },
+        { "name": "Get Member's Fines", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/fines/member/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "fines", "member", "1"] } } },
+        { "name": "Create Fine", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"memberId\": 1,\n  \"transactionId\": 1,\n  \"overdueDays\": 5\n}" }, "url": { "raw": "http://localhost:8080/api/fines", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "fines"] } } },
+        { "name": "Pay Fine", "request": { "method": "PUT", "header": [], "url": { "raw": "http://localhost:8080/api/fines/1/pay", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "fines", "1", "pay"] } } }
+      ]
+    },
+    {
+      "name": "Notification Management",
+      "item": [
+        { "name": "Get All Notifications", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/notifications", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications"] } } },
+        { "name": "Get Notification by ID", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/notifications/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "1"] } } },
+        { "name": "Get Member's Notifications", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/notifications/member/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "member", "1"] } } },
+        { "name": "Create Notification", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{\n  \"memberId\": 1,\n  \"message\": \"Your book is due soon.\"\n}" }, "url": { "raw": "http://localhost:8080/api/notifications", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications"] } } },
+        { "name": "Get Notification Stats", "request": { "method": "GET", "header": [], "url": { "raw": "http://localhost:8080/api/notifications/stats", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "stats"] } } }
+      ]
+    }
+  ]
+}
