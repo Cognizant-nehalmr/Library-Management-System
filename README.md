@@ -304,7 +304,7 @@ cd notification-service && mvn spring-boot:run
 ## Deployment & Production Best Practices
 
 - **Build**: Maven, multi-module
-- **Run**: `scripts/start-services.sh` (handles DB, logs, health checks)
+- **Run**: `scripts/lms-dev.sh` (handles DB, logs, health checks)
 - **Logs**: Per-service, rotate and monitor
 - **Security**: Use strong DB/email passwords, restrict ports, enable HTTPS in prod
 - **Scaling**: Each service can be scaled independently
