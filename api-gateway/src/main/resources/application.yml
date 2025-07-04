@@ -27,20 +27,15 @@ spring:
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**
+      
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
-        cors-configurations:
+        corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:3000"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
+            allowedOrigins: "*"
+            allowedMethods: "*"
             allowedHeaders: "*"
-            allowCredentials: true
 
 eureka:
   client:
