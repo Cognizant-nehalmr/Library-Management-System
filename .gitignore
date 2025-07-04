@@ -1,0 +1,19 @@
+# Ignore Maven/Gradle build output
+target/
+
+# Ignore logs directory
+logs/
+
+# Ignore IDE files
+*.iml
+.idea/
+*.classpath
+*.project
+*.settings/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore environment files
+.env
