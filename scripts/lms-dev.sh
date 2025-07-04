@@ -74,20 +74,38 @@ start_services() {
 stop_services() {
   mkdir -p "$LOG_DIR"
   declare -a services=("notification-service:8085" "fine-service:8084" "transaction-service:8083" "member-service:8082" "book-service:8081" "api-gateway:8080" "eureka-server:8761")
+  # Detect OS
+  OS_TYPE="$(uname 2>/dev/null || echo $OS)"
   for entry in "${services[@]}"; do
     IFS=":" read -r service_name port <<< "$entry"
     echo "🛑 Stopping $service_name (port $port)..."
-    PID=$(lsof -ti:$port)
-    if [ ! -z "$PID" ]; then
-      kill -TERM $PID
-      sleep 5
-      if kill -0 $PID 2>/dev/null; then
-        echo "⚠️  Force killing $service_name..."
-        kill -KILL $PID
+    if [[ "$OS_TYPE" =~ (MINGW|MSYS|CYGWIN|Windows_NT) ]]; then
+      # Windows: use netstat and taskkill
+      PID=$(netstat -ano | grep ":$port" | grep LISTENING | awk '{print $5}' | head -n 1)
+      if [ -z "$PID" ]; then
+        # Try another way if above fails (for some netstat versions)
+        PID=$(netstat -ano | grep ":$port" | awk '{print $5}' | head -n 1)
       fi
-      echo "✅ $service_name stopped"
+      if [ ! -z "$PID" ]; then
+        taskkill //PID $PID //F > /dev/null 2>&1
+        echo "✅ $service_name stopped (PID $PID)"
+      else
+        echo "ℹ️  $service_name was not running"
+      fi
     else
-      echo "ℹ️  $service_name was not running"
+      # Linux/macOS: use lsof and kill
+      PID=$(lsof -ti:$port)
+      if [ ! -z "$PID" ]; then
+        kill -TERM $PID
+        sleep 5
+        if kill -0 $PID 2>/dev/null; then
+          echo "⚠️  Force killing $service_name..."
+          kill -KILL $PID
+        fi
+        echo "✅ $service_name stopped"
+      else
+        echo "ℹ️  $service_name was not running"
+      fi
     fi
   done
   echo "🏁 All services stopped successfully!"
