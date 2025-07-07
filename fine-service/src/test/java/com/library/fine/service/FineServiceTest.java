@@ -33,23 +33,23 @@ class FineServiceTest {
         fine.setFineId(1L);
         fine.setAmount(new BigDecimal("5.00"));
         when(fineRepository.findById(1L)).thenReturn(Optional.of(fine));
-        Optional<FineDTO> result = fineService.getFineById(1L);
+        Optional<FineResponseDTO> result = fineService.getFineById(1L);
         assertTrue(result.isPresent());
-        assertEquals(1L, result.get().getFineId());
-        assertEquals(new BigDecimal("5.00"), result.get().getAmount());
+        assertEquals(1L, result.get().getFineDTO().getFineId());
+        assertEquals(new BigDecimal("5.00"), result.get().getFineDTO().getFineId());
     }
 
     @Test
     void testGetFineById_NotFound() {
         when(fineRepository.findById(2L)).thenReturn(Optional.empty());
-        Optional<FineDTO> result = fineService.getFineById(2L);
+        Optional<FineResponseDTO> result = fineService.getFineById(2L);
         assertFalse(result.isPresent());
     }
 
     @Test
     void testGetAllFines_Empty() {
         when(fineRepository.findAll()).thenReturn(Collections.emptyList());
-        List<FineDTO> result = fineService.getAllFines();
+        List<FineResponseDTO> result = fineService.getAllFines();
         assertTrue(result.isEmpty());
     }
 
