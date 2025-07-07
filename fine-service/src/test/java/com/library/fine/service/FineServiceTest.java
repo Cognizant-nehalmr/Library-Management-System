@@ -1,6 +1,7 @@
 package com.library.fine.service;
 
 import com.library.fine.dto.FineDTO;
+import com.library.fine.dto.FineResponseDTO;
 import com.library.fine.entity.Fine;
 import com.library.fine.repository.FineRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -59,14 +60,14 @@ class FineServiceTest {
         fine.setFineId(10L);
         fine.setAmount(new BigDecimal("2.00"));
         when(fineRepository.save(any(Fine.class))).thenReturn(fine);
-        FineDTO result = fineService.createFine(1L, 100L, 2);
+        FineResponseDTO result = fineService.createFine(100L);
         assertNotNull(result);
-        assertEquals(new BigDecimal("2.00"), result.getAmount());
+        assertEquals(new BigDecimal("2.00"), result.getFineDTO().getAmount());
     }
 
     @Test
     void testCreateFine_Duplicate() {
         when(fineRepository.existsByTransactionId(100L)).thenReturn(true);
-        assertThrows(RuntimeException.class, () -> fineService.createFine(1L, 100L, 2));
+        assertThrows(RuntimeException.class, () -> fineService.createFine( 100L));
     }
 }

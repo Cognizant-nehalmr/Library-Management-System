@@ -1,6 +1,8 @@
 package com.library.transaction.controller;
 
 import com.library.transaction.dto.BorrowingTransactionDTO;
+import com.library.transaction.dto.BorrowingTransactionResponseDTO;
+import com.library.transaction.repository.BorrowingTransactionRepository;
 import com.library.transaction.service.TransactionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,40 +22,40 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @GetMapping
-    public ResponseEntity<List<BorrowingTransactionDTO>> getAllTransactions() {
-        List<BorrowingTransactionDTO> transactions = transactionService.getAllTransactions();
+    public ResponseEntity<List<BorrowingTransactionResponseDTO>> getAllTransactions() {
+        List<BorrowingTransactionResponseDTO> transactions = transactionService.getAllTransactions();
         return ResponseEntity.ok(transactions);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BorrowingTransactionDTO> getTransactionById(@PathVariable Long id) {
+    public ResponseEntity<BorrowingTransactionResponseDTO> getTransactionById(@PathVariable Long id) {
         return transactionService.getTransactionById(id)
                 .map(transaction -> ResponseEntity.ok(transaction))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/member/{memberId}")
-    public ResponseEntity<List<BorrowingTransactionDTO>> getTransactionsByMemberId(@PathVariable Long memberId) {
-        List<BorrowingTransactionDTO> transactions = transactionService.getTransactionsByMemberId(memberId);
+    public ResponseEntity<List<BorrowingTransactionResponseDTO>> getTransactionsByMemberId(@PathVariable Long memberId) {
+        List<BorrowingTransactionResponseDTO> transactions = transactionService.getTransactionsByMemberId(memberId);
         return ResponseEntity.ok(transactions);
     }
 
     @GetMapping("/book/{bookId}")
-    public ResponseEntity<List<BorrowingTransactionDTO>> getTransactionsByBookId(@PathVariable Long bookId) {
-        List<BorrowingTransactionDTO> transactions = transactionService.getTransactionsByBookId(bookId);
+    public ResponseEntity<List<BorrowingTransactionResponseDTO>> getTransactionsByBookId(@PathVariable Long bookId) {
+        List<BorrowingTransactionResponseDTO> transactions = transactionService.getTransactionsByBookId(bookId);
         return ResponseEntity.ok(transactions);
     }
 
     @GetMapping("/overdue")
-    public ResponseEntity<List<BorrowingTransactionDTO>> getOverdueTransactions() {
-        List<BorrowingTransactionDTO> transactions = transactionService.getOverdueTransactions();
+    public ResponseEntity<List<BorrowingTransactionResponseDTO>> getOverdueTransactions() {
+        List<BorrowingTransactionResponseDTO> transactions = transactionService.getOverdueTransactions();
         return ResponseEntity.ok(transactions);
     }
 
     @PostMapping("/borrow")
     public ResponseEntity<?> borrowBook(@Valid @RequestBody BorrowingTransactionDTO transactionDTO) {
         try {
-            BorrowingTransactionDTO borrowedTransaction = transactionService.borrowBook(transactionDTO);
+            BorrowingTransactionResponseDTO borrowedTransaction = transactionService.borrowBook(transactionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(borrowedTransaction);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
@@ -64,7 +66,7 @@ public class TransactionController {
     public ResponseEntity<?> returnBook(@PathVariable Long id) {
         try {
             return transactionService.returnBook(id)
-                    .map(transaction -> ResponseEntity.ok(transaction))
+                    .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));

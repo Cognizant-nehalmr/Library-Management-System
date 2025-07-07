@@ -22,7 +22,7 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Value("${spring.mail.username:noreply@library.com}")
+    @Value("${spring.mail.username}")
     private String fromEmail;
 
     public void sendSimpleEmail(String to, String subject, String text) {

@@ -27,7 +27,6 @@ spring:
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**
-      
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:

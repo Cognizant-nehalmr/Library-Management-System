@@ -1,6 +1,7 @@
 package com.library.transaction.service;
 
 import com.library.transaction.dto.BorrowingTransactionDTO;
+import com.library.transaction.dto.BorrowingTransactionResponseDTO;
 import com.library.transaction.entity.BorrowingTransaction;
 import com.library.transaction.repository.BorrowingTransactionRepository;
 import com.library.transaction.client.BookServiceClient;
@@ -35,23 +36,23 @@ class TransactionServiceTest {
         tx.setTransactionId(1L);
         tx.setBookId(2L);
         when(transactionRepository.findById(1L)).thenReturn(Optional.of(tx));
-        Optional<BorrowingTransactionDTO> result = transactionService.getTransactionById(1L);
+        Optional<BorrowingTransactionResponseDTO> result = transactionService.getTransactionById(1L);
         assertTrue(result.isPresent());
         assertEquals(1L, result.get().getTransactionId());
-        assertEquals(2L, result.get().getBookId());
+        assertEquals(2L, result.get().getBook().getBookId());
     }
 
     @Test
     void testGetTransactionById_NotFound() {
         when(transactionRepository.findById(2L)).thenReturn(Optional.empty());
-        Optional<BorrowingTransactionDTO> result = transactionService.getTransactionById(2L);
+        Optional<BorrowingTransactionResponseDTO> result = transactionService.getTransactionById(2L);
         assertFalse(result.isPresent());
     }
 
     @Test
     void testGetAllTransactions_Empty() {
         when(transactionRepository.findAll()).thenReturn(Collections.emptyList());
-        List<BorrowingTransactionDTO> result = transactionService.getAllTransactions();
+        List<BorrowingTransactionResponseDTO> result = transactionService.getAllTransactions();
         assertTrue(result.isEmpty());
     }
 

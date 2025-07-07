@@ -1,6 +1,7 @@
 package com.library.fine.controller;
 
 import com.library.fine.dto.FineDTO;
+import com.library.fine.dto.FineResponseDTO;
 import com.library.fine.service.FineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,14 +51,10 @@ public class FineController {
         return ResponseEntity.ok(Map.of("totalPendingFines", total));
     }
 
-    @PostMapping
-    public ResponseEntity<?> createFine(@RequestBody Map<String, Object> request) {
+    @PostMapping("/{transactionId}")
+    public ResponseEntity<?> createFine(@PathVariable Long transactionId) {
         try {
-            Long memberId = Long.valueOf(request.get("memberId").toString());
-            Long transactionId = Long.valueOf(request.get("transactionId").toString());
-            Integer overdueDays = Integer.valueOf(request.get("overdueDays").toString());
-            
-            FineDTO createdFine = fineService.createFine(memberId, transactionId, overdueDays);
+            FineResponseDTO createdFine = fineService.createFine(transactionId);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdFine);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));

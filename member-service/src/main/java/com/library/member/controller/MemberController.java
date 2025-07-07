@@ -82,12 +82,11 @@ public class MemberController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}/status")
+    @PutMapping("/{id}/{status}")
     public ResponseEntity<MemberDTO> updateMembershipStatus(
-            @PathVariable Long id, 
-            @RequestBody Map<String, String> request) {
+            @PathVariable Long id, @PathVariable Member.MembershipStatus status) {
         try {
-            Member.MembershipStatus status = Member.MembershipStatus.valueOf(request.get("status"));
+            // Member.MembershipStatus status = Member.MembershipStatus.valueOf(request.get("status"));
             return memberService.updateMembershipStatus(id, status)
                     .map(member -> ResponseEntity.ok(member))
                     .orElse(ResponseEntity.notFound().build());

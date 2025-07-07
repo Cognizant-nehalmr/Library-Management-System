@@ -1,14 +1,20 @@
 package com.library.transaction.service;
 
-import com.library.transaction.client.BookServiceClient;
-import com.library.transaction.dto.BorrowingTransactionDTO;
+import com.library.transaction.client.*;
+import com.library.transaction.dto.*;
 import com.library.transaction.entity.BorrowingTransaction;
 import com.library.transaction.repository.BorrowingTransactionRepository;
+
+import feign.FeignException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,75 +30,210 @@ public class TransactionService {
     @Autowired
     private BookServiceClient bookServiceClient;
 
-    public List<BorrowingTransactionDTO> getAllTransactions() {
+    @Autowired
+    private MemberServiceClient memberServiceClient;
+
+    public List<BorrowingTransactionResponseDTO> getAllTransactions() {
         return transactionRepository.findAll().stream()
-                .map(this::convertToDTO)
+                .map(transaction -> {
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // Fetch Book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found for ID: " + transaction.getBookId());
+                    }
+
+                    // Fetch Member
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(transaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found for ID: " + transaction.getMemberId());
+                    }
+
+                    return responseDTO;
+                })
                 .collect(Collectors.toList());
     }
 
-    public Optional<BorrowingTransactionDTO> getTransactionById(Long id) {
+    public Optional<BorrowingTransactionResponseDTO> getTransactionById(Long id) {
         return transactionRepository.findById(id)
-                .map(this::convertToDTO);
+                .map(transaction -> {
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // Fetch Book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found with ID: " + transaction.getBookId());
+                    }
+
+                    // Fetch Member
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(transaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found with ID: " + transaction.getMemberId());
+                    }
+
+                    return responseDTO;
+                });
     }
 
-    public List<BorrowingTransactionDTO> getTransactionsByMemberId(Long memberId) {
+    public List<BorrowingTransactionResponseDTO> getTransactionsByMemberId(Long memberId) {
         return transactionRepository.findByMemberId(memberId).stream()
-                .map(this::convertToDTO)
+                .map(transaction -> {
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // Fetch Book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found with ID: " + transaction.getBookId());
+                    }
+
+                    // Fetch Member (you already know memberId, but still include the full object)
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(transaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found with ID: " + transaction.getMemberId());
+                    }
+
+                    return responseDTO;
+                })
                 .collect(Collectors.toList());
     }
 
-    public List<BorrowingTransactionDTO> getTransactionsByBookId(Long bookId) {
+    public List<BorrowingTransactionResponseDTO> getTransactionsByBookId(Long bookId) {
         return transactionRepository.findByBookId(bookId).stream()
-                .map(this::convertToDTO)
+                .map(transaction -> {
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // ✅ Fetch Book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found with ID: " + transaction.getBookId());
+                    }
+
+                    // ✅ Fetch Member
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(transaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found with ID: " + transaction.getMemberId());
+                    }
+
+                    return responseDTO;
+                })
                 .collect(Collectors.toList());
     }
 
-    public List<BorrowingTransactionDTO> getOverdueTransactions() {
+    public List<BorrowingTransactionResponseDTO> getOverdueTransactions() {
         LocalDate today = LocalDate.now();
+
         return transactionRepository.findOverdueTransactions(today).stream()
-                .map(this::convertToDTO)
+                .map(transaction -> {
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // ✅ Fetch Book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found with ID: " + transaction.getBookId());
+                    }
+
+                    // ✅ Fetch Member
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(transaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found with ID: " + transaction.getMemberId());
+                    }
+
+                    return responseDTO;
+                })
                 .collect(Collectors.toList());
     }
 
-    public BorrowingTransactionDTO borrowBook(BorrowingTransactionDTO transactionDTO) {
-        // Check if member has reached borrowing limit
+    public BorrowingTransactionResponseDTO borrowBook(BorrowingTransactionDTO transactionDTO) {
+        // ✅ Validate Member borrowing limit
         long activeBorrowings = transactionRepository.countByMemberIdAndStatus(
                 transactionDTO.getMemberId(), BorrowingTransaction.TransactionStatus.BORROWED);
-        
-        if (activeBorrowings >= 5) { // Assuming max 5 books per member
-            throw new RuntimeException("Member has reached maximum borrowing limit");
+        if (activeBorrowings >= 5) {
+            throw new RuntimeException("Member has reached maximum borrowing limit.");
         }
 
-        // Update book availability
+        // ✅ Fetch Book by ID
+        BookDTO book;
         try {
-            bookServiceClient.updateBookAvailability(
-                    transactionDTO.getBookId(), 
-                    Map.of("change", -1));
+            ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(transactionDTO.getBookId());
+            book = bookResponse.getBody();
+            if (book == null) {
+                throw new RuntimeException("Book not found with ID: " + transactionDTO.getBookId());
+            }
+            if (book.getAvailableCopies() == 0) {
+                throw new RuntimeException("No available copies for Book ID: " + transactionDTO.getBookId());
+            }
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException("Book not found with ID: " + transactionDTO.getBookId());
+        }
+
+        // ✅ Fetch Member by ID
+        MemberDTO member;
+        try {
+            ResponseEntity<MemberDTO> memberResponse = memberServiceClient.getMemberById(transactionDTO.getMemberId());
+            member = memberResponse.getBody();
+            if (member == null) {
+                throw new RuntimeException("Member not found with ID: " + transactionDTO.getMemberId());
+            }
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException("Member not found with ID: " + transactionDTO.getMemberId());
+        }
+
+        // ✅ Update book availability
+        try {
+            bookServiceClient.updateBookAvailability(transactionDTO.getBookId(), Map.of("change", -1));
         } catch (Exception e) {
             throw new RuntimeException("Unable to update book availability: " + e.getMessage());
         }
 
+        // ✅ Save Transaction
         BorrowingTransaction transaction = convertToEntity(transactionDTO);
         transaction.setBorrowDate(LocalDate.now());
-        transaction.setDueDate(LocalDate.now().plusDays(14)); // 2 weeks borrowing period
+        transaction.setDueDate(transaction.getDueDate() != null ? transaction.getDueDate() : LocalDate.now().plusDays(14));
         transaction.setStatus(BorrowingTransaction.TransactionStatus.BORROWED);
-
         BorrowingTransaction savedTransaction = transactionRepository.save(transaction);
-        return convertToDTO(savedTransaction);
+
+        // ✅ Return combined response
+        return new BorrowingTransactionResponseDTO(savedTransaction, book, member);
     }
 
-    public Optional<BorrowingTransactionDTO> returnBook(Long transactionId) {
+    public Optional<BorrowingTransactionResponseDTO> returnBook(Long transactionId) {
         return transactionRepository.findById(transactionId)
                 .map(transaction -> {
                     if (transaction.getStatus() != BorrowingTransaction.TransactionStatus.BORROWED &&
-                        transaction.getStatus() != BorrowingTransaction.TransactionStatus.OVERDUE) {
+                            transaction.getStatus() != BorrowingTransaction.TransactionStatus.OVERDUE) {
                         throw new RuntimeException("Book is not currently borrowed");
                     }
 
-                    // Update book availability
+                    // ✅ Update book availability
                     try {
                         bookServiceClient.updateBookAvailability(
-                                transaction.getBookId(), 
+                                transaction.getBookId(),
                                 Map.of("change", 1));
                     } catch (Exception e) {
                         throw new RuntimeException("Unable to update book availability: " + e.getMessage());
@@ -100,33 +241,56 @@ public class TransactionService {
 
                     transaction.setReturnDate(LocalDate.now());
                     transaction.setStatus(BorrowingTransaction.TransactionStatus.RETURNED);
-                    
+
                     BorrowingTransaction updatedTransaction = transactionRepository.save(transaction);
-                    return convertToDTO(updatedTransaction);
+
+                    // ✅ Prepare response DTO
+                    BorrowingTransactionResponseDTO responseDTO = mapToResponseDTO(transaction);
+
+                    // ✅ Fetch and attach book
+                    try {
+                        ResponseEntity<BookDTO> bookResponse = bookServiceClient
+                                .getBookById(updatedTransaction.getBookId());
+                        responseDTO.setBook(bookResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Book not found with ID: " + updatedTransaction.getBookId());
+                    }
+
+                    // ✅ Fetch and attach member
+                    try {
+                        ResponseEntity<MemberDTO> memberResponse = memberServiceClient
+                                .getMemberById(updatedTransaction.getMemberId());
+                        responseDTO.setMember(memberResponse.getBody());
+                    } catch (FeignException.NotFound e) {
+                        throw new RuntimeException("Member not found with ID: " + updatedTransaction.getMemberId());
+                    }
+
+                    return responseDTO;
                 });
     }
 
+    @Scheduled(cron = "0 0 1 * * ?") // Every day at 1:00 AM
     public void updateOverdueTransactions() {
         LocalDate today = LocalDate.now();
         List<BorrowingTransaction> overdueTransactions = transactionRepository.findOverdueTransactions(today);
-        
+
         for (BorrowingTransaction transaction : overdueTransactions) {
             if (transaction.getStatus() == BorrowingTransaction.TransactionStatus.BORROWED) {
                 transaction.setStatus(BorrowingTransaction.TransactionStatus.OVERDUE);
                 transactionRepository.save(transaction);
             }
         }
+
+        System.out.println("✅ Overdue transactions updated at: " + LocalDateTime.now());
     }
 
-    private BorrowingTransactionDTO convertToDTO(BorrowingTransaction transaction) {
-        BorrowingTransactionDTO dto = new BorrowingTransactionDTO();
+    private BorrowingTransactionResponseDTO mapToResponseDTO(BorrowingTransaction transaction) {
+        BorrowingTransactionResponseDTO dto = new BorrowingTransactionResponseDTO();
         dto.setTransactionId(transaction.getTransactionId());
-        dto.setBookId(transaction.getBookId());
-        dto.setMemberId(transaction.getMemberId());
         dto.setBorrowDate(transaction.getBorrowDate());
         dto.setDueDate(transaction.getDueDate());
         dto.setReturnDate(transaction.getReturnDate());
-        dto.setStatus(transaction.getStatus());
+        dto.setStatus(transaction.getStatus().toString());
         return dto;
     }
 
