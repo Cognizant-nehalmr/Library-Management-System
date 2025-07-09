@@ -28,6 +28,7 @@ public class Fine {
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 20, nullable = false)
     private FineStatus status = FineStatus.PENDING;
 
     @Column(name = "transaction_date")
@@ -36,43 +37,98 @@ public class Fine {
     @Column(name = "paid_date")
     private LocalDateTime paidDate;
 
+    @Column(name = "fine_type")
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Fine type is required")
+    private FineType fineType;
+
     @PrePersist
     protected void onCreate() {
         transactionDate = LocalDateTime.now();
     }
 
     // Constructors
-    public Fine() {}
+    public Fine() {
+    }
 
-    public Fine(Long memberId, Long transactionId, BigDecimal amount) {
+    public Fine(Long memberId, Long transactionId, BigDecimal amount, FineType fineType) {
         this.memberId = memberId;
         this.transactionId = transactionId;
         this.amount = amount;
+        this.fineType = fineType;
     }
 
     // Getters and Setters
-    public Long getFineId() { return fineId; }
-    public void setFineId(Long fineId) { this.fineId = fineId; }
+    public Long getFineId() {
+        return fineId;
+    }
 
-    public Long getMemberId() { return memberId; }
-    public void setMemberId(Long memberId) { this.memberId = memberId; }
+    public void setFineId(Long fineId) {
+        this.fineId = fineId;
+    }
 
-    public Long getTransactionId() { return transactionId; }
-    public void setTransactionId(Long transactionId) { this.transactionId = transactionId; }
+    public Long getMemberId() {
+        return memberId;
+    }
 
-    public BigDecimal getAmount() { return amount; }
-    public void setAmount(BigDecimal amount) { this.amount = amount; }
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 
-    public FineStatus getStatus() { return status; }
-    public void setStatus(FineStatus status) { this.status = status; }
+    public Long getTransactionId() {
+        return transactionId;
+    }
 
-    public LocalDateTime getTransactionDate() { return transactionDate; }
-    public void setTransactionDate(LocalDateTime transactionDate) { this.transactionDate = transactionDate; }
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
 
-    public LocalDateTime getPaidDate() { return paidDate; }
-    public void setPaidDate(LocalDateTime paidDate) { this.paidDate = paidDate; }
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public FineStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(FineStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    public LocalDateTime getPaidDate() {
+        return paidDate;
+    }
+
+    public void setPaidDate(LocalDateTime paidDate) {
+        this.paidDate = paidDate;
+    }
+
+    public FineType getFineType() {
+        return fineType;
+    }
+
+    public void setFineType(FineType fineType) {
+        this.fineType = fineType;
+    }
 
     public enum FineStatus {
-        PENDING, PAID
+        PENDING, PAID, CANCELLED
     }
+
+    public enum FineType {
+        LATE_RETURN, LOST_ITEM, DAMAGED_ITEM
+    }
+
 }

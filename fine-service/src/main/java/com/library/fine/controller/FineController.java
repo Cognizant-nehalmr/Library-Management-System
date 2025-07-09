@@ -1,7 +1,7 @@
 package com.library.fine.controller;
 
-import com.library.fine.dto.FineDTO;
 import com.library.fine.dto.FineResponseDTO;
+import com.library.fine.entity.Fine.FineType;
 import com.library.fine.service.FineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +25,16 @@ public class FineController {
         return ResponseEntity.ok(fineService.getAllFines());
     }
 
+    @GetMapping("/collected")
+    public ResponseEntity<BigDecimal> getTotalCollectedFines() {
+        return ResponseEntity.ok(fineService.getTotalCollectedFines());
+    }
+
+    @GetMapping("/pending")
+    public ResponseEntity<BigDecimal> getTotalPendingFines() {
+        return ResponseEntity.ok(fineService.getTotalPendingFines());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<FineResponseDTO> getFineById(@PathVariable Long id) {
         return fineService.getFineById(id)
@@ -37,31 +47,47 @@ public class FineController {
         return ResponseEntity.ok(fineService.getFinesByMemberId(memberId));
     }
 
-    @GetMapping("/pending")
-    public ResponseEntity<List<FineResponseDTO>> getPendingFines() {
-        return ResponseEntity.ok(fineService.getPendingFines());
-    }
-
     @GetMapping("/member/{memberId}/total")
     public ResponseEntity<Map<String, BigDecimal>> getTotalPendingFinesByMember(@PathVariable Long memberId) {
         BigDecimal total = fineService.getTotalPendingFinesByMember(memberId);
         return ResponseEntity.ok(Map.of("totalPendingFines", total));
     }
 
-    @PostMapping("/{transactionId}")
-    public ResponseEntity<?> createFine(@PathVariable Long transactionId) {
-        try {
-            FineResponseDTO createdFine = fineService.createFine(transactionId);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdFine);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
-        }
+    @PostMapping("/{transactionId}/{fineType}")
+    public ResponseEntity<FineResponseDTO> createFine(
+            @PathVariable Long transactionId,
+            @PathVariable FineType fineType,
+            @RequestParam(required = false) BigDecimal amount) {
+        FineResponseDTO fine = fineService.createFine(transactionId, fineType, amount);
+        return ResponseEntity.ok(fine);
     }
 
     @PutMapping("/{id}/pay")
     public ResponseEntity<?> payFine(@PathVariable Long id) {
         try {
             return fineService.payFine(id)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @PutMapping("/{id}/reverse")
+    public ResponseEntity<?> reverseFinePayment(@PathVariable Long id) {
+        try {
+            return fineService.reverseFinePayment(id)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<?> cancelFine(@PathVariable Long id) {
+        try {
+            return fineService.cancelFine(id)
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         } catch (RuntimeException e) {

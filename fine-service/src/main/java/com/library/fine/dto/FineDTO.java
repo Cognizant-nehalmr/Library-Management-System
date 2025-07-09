@@ -22,11 +22,12 @@ public class FineDTO {
     private Fine.FineStatus status;
     private LocalDateTime transactionDate;
     private LocalDateTime paidDate;
+    private Fine.FineType fineType;
 
     // Constructors
     public FineDTO() {}
 
-    public FineDTO(Long memberId, Long transactionId, BigDecimal amount) {
+    public FineDTO(Long memberId, Long transactionId, BigDecimal amount, Fine.FineType fineType) {
         this.memberId = memberId;
         this.transactionId = transactionId;
         this.amount = amount;
@@ -53,4 +54,7 @@ public class FineDTO {
 
     public LocalDateTime getPaidDate() { return paidDate; }
     public void setPaidDate(LocalDateTime paidDate) { this.paidDate = paidDate; }
+
+    public Fine.FineType getFineType() { return fineType; }
+    public void setFineType(Fine.FineType fineType) { this.fineType = fineType; }
 }
