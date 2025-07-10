@@ -12,7 +12,8 @@
 [INFO] Copying 0 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ api-gateway ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 3 source files with javac [debug release 21] to target\classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ api-gateway ---
 [INFO] skip non existing resourceDirectory C:\Users\2407071\Desktop\GenC-Project\Library-Management-System\api-gateway\src\test\resources
@@ -34,464 +35,102 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2025-07-04 11:25:22 - Starting ApiGatewayApplication using Java 21 with PID 17036 (C:\Users\2407071\Desktop\GenC-Project\Library-Management-System\api-gateway\target\classes started by 2407071 in C:\Users\2407071\Desktop\GenC-Project\Library-Management-System\api-gateway)
-2025-07-04 11:25:22 - No active profile set, falling back to 1 default profile: "default"
-2025-07-04 11:25:25 - BeanFactory id=438a728b-7c43-3c86-a3e5-30ca56727430
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$LoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$LoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration' of type [org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration' of type [org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.commons.config.CommonsConfigAutoConfiguration' of type [org.springframework.cloud.commons.config.CommonsConfigAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'loadBalancerClientsDefaultsMappingsProvider' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x000001eba43967b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'defaultsBindHandlerAdvisor' of type [org.springframework.cloud.commons.config.DefaultsBindHandlerAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'spring.cloud.loadbalancer-org.springframework.cloud.client.loadbalancer.LoadBalancerClientsProperties' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerClientsProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'default.org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'default.org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'default.org.springframework.cloud.netflix.eureka.loadbalancer.LoadBalancerEurekaAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'loadBalancerClientFactory' of type [org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'blockingLoadBalancerClient' of type [org.springframework.cloud.loadbalancer.blocking.client.BlockingLoadBalancerClient] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'loadBalancerServiceInstanceCookieTransformer' of type [org.springframework.cloud.loadbalancer.core.LoadBalancerServiceInstanceCookieTransformer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'xForwarderHeadersTransformer' of type [org.springframework.cloud.loadbalancer.blocking.XForwardedHeadersTransformer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:25 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:26 - Bean 'loadBalancerRequestFactory' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerRequestFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:26 - Bean 'loadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:26 - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2025-07-04 11:25:26 - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:26 - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2025-07-04 11:25:26 - Routes supplied from Gateway Properties: [RouteDefinition{id='book-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/books/**}}], filters=[], uri=lb://book-service, order=0, metadata={}}, RouteDefinition{id='member-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/members/**}}], filters=[], uri=lb://member-service, order=0, metadata={}}, RouteDefinition{id='transaction-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/transactions/**}}], filters=[], uri=lb://transaction-service, order=0, metadata={}}, RouteDefinition{id='fine-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/fines/**}}], filters=[], uri=lb://fine-service, order=0, metadata={}}, RouteDefinition{id='notification-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/notifications/**}}], filters=[], uri=lb://notification-service, order=0, metadata={}}]
-2025-07-04 11:25:27 - 
+2025-07-10 10:50:59 - Starting ApiGatewayApplication using Java 21 with PID 28036 (C:\Users\2407071\Desktop\GenC-Project\Library-Management-System\api-gateway\target\classes started by 2407071 in C:\Users\2407071\Desktop\GenC-Project\Library-Management-System\api-gateway)
+2025-07-10 10:50:59 - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 10:51:01 - BeanFactory id=939006ca-a6a3-35e7-9a70-dd07dd770d0d
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$LoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$LoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration' of type [org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration' of type [org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.commons.config.CommonsConfigAutoConfiguration' of type [org.springframework.cloud.commons.config.CommonsConfigAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'loadBalancerClientsDefaultsMappingsProvider' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x0000022f043967b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'defaultsBindHandlerAdvisor' of type [org.springframework.cloud.commons.config.DefaultsBindHandlerAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'spring.cloud.loadbalancer-org.springframework.cloud.client.loadbalancer.LoadBalancerClientsProperties' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerClientsProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'default.org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'default.org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'default.org.springframework.cloud.netflix.eureka.loadbalancer.LoadBalancerEurekaAutoConfiguration.LoadBalancerClientSpecification' of type [org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientSpecification] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'loadBalancerClientFactory' of type [org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'blockingLoadBalancerClient' of type [org.springframework.cloud.loadbalancer.blocking.client.BlockingLoadBalancerClient] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'loadBalancerServiceInstanceCookieTransformer' of type [org.springframework.cloud.loadbalancer.core.LoadBalancerServiceInstanceCookieTransformer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'xForwarderHeadersTransformer' of type [org.springframework.cloud.loadbalancer.blocking.XForwardedHeadersTransformer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'loadBalancerRequestFactory' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerRequestFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'loadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-10 10:51:01 - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-07-10 10:51:01 - Routes supplied from Gateway Properties: [RouteDefinition{id='book-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/books/**}}], filters=[], uri=lb://book-service, order=0, metadata={}}, RouteDefinition{id='member-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/members/**}}], filters=[], uri=lb://member-service, order=0, metadata={}}, RouteDefinition{id='transaction-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/transactions/**}}], filters=[], uri=lb://transaction-service, order=0, metadata={}}, RouteDefinition{id='fine-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/fines/**}}], filters=[], uri=lb://fine-service, order=0, metadata={}}, RouteDefinition{id='notification-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/notifications/**}}], filters=[], uri=lb://notification-service, order=0, metadata={}}]
+2025-07-10 10:51:01 - 
 
-Using generated security password: eeae34ae-6fd0-4a97-bf4f-66cddd721122
+Using generated security password: da4ca020-4163-48cc-a84d-d44f659326e3
 
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [After]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Before]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Between]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Cookie]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Header]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Host]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Method]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Path]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Query]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [ReadBody]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [RemoteAddr]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [Weight]
-2025-07-04 11:25:28 - Loaded RoutePredicateFactory [CloudFoundryRouteService]
-2025-07-04 11:25:29 - Exposing 2 endpoint(s) beneath base path '/actuator'
-2025-07-04 11:25:29 - Eureka HTTP Client uses RestTemplate.
-2025-07-04 11:25:29 - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2025-07-04 11:25:30 - Setting initial instance status as: STARTING
-2025-07-04 11:25:30 - Initializing Eureka in region us-east-1
-2025-07-04 11:25:30 - Resolving eureka endpoints via configuration
-2025-07-04 11:25:30 - Disable delta property : false
-2025-07-04 11:25:30 - Single vip registry refresh property : null
-2025-07-04 11:25:30 - Force full registry fetch : false
-2025-07-04 11:25:30 - Application is null : false
-2025-07-04 11:25:30 - Registered Applications size is zero : true
-2025-07-04 11:25:30 - Application version is -1: true
-2025-07-04 11:25:30 - Getting all instance registry info from the eureka server
-2025-07-04 11:25:32 - The response status is 200
-2025-07-04 11:25:32 - Starting heartbeat executor: renew interval is: 10
-2025-07-04 11:25:32 - InstanceInfoReplicator onDemand update allowed rate per min is 4
-2025-07-04 11:25:32 - Discovery Client initialized at timestamp 1751608532805 with initial instances count: 0
-2025-07-04 11:25:32 - Registering application API-GATEWAY with eureka with status UP
-2025-07-04 11:25:32 - Saw local status change event StatusChangeEvent [timestamp=1751608532817, current=UP, previous=STARTING]
-2025-07-04 11:25:32 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080: registering service...
-2025-07-04 11:25:32 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:25:32 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:32 - RouteDefinition matched: book-service
-2025-07-04 11:25:32 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:25:32 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:32 - RouteDefinition matched: member-service
-2025-07-04 11:25:32 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:25:32 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:32 - RouteDefinition matched: transaction-service
-2025-07-04 11:25:32 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:25:32 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:32 - RouteDefinition matched: fine-service
-2025-07-04 11:25:32 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:25:32 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:32 - RouteDefinition matched: notification-service
-2025-07-04 11:25:32 - New routes count: 5
-2025-07-04 11:25:33 - Netty started on port 8080
-2025-07-04 11:25:33 - Updating port to 8080
-2025-07-04 11:25:33 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:25:33 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:33 - RouteDefinition matched: book-service
-2025-07-04 11:25:33 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:25:33 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:33 - RouteDefinition matched: member-service
-2025-07-04 11:25:33 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:25:33 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:33 - RouteDefinition matched: transaction-service
-2025-07-04 11:25:33 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:25:33 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:33 - RouteDefinition matched: fine-service
-2025-07-04 11:25:33 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:25:33 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:25:33 - RouteDefinition matched: notification-service
-2025-07-04 11:25:33 - New routes count: 5
-2025-07-04 11:25:33 - Started ApiGatewayApplication in 12.214 seconds (process running for 13.386)
-2025-07-04 11:25:33 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080 - registration status: 204
-2025-07-04 11:26:02 - Disable delta property : false
-2025-07-04 11:26:02 - Single vip registry refresh property : null
-2025-07-04 11:26:02 - Force full registry fetch : false
-2025-07-04 11:26:02 - Application is null : false
-2025-07-04 11:26:02 - Registered Applications size is zero : true
-2025-07-04 11:26:02 - Application version is -1: false
-2025-07-04 11:26:02 - Getting all instance registry info from the eureka server
-2025-07-04 11:26:03 - The response status is 200
-2025-07-04 11:26:03 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:26:03 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:03 - RouteDefinition matched: book-service
-2025-07-04 11:26:03 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:26:03 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:03 - RouteDefinition matched: member-service
-2025-07-04 11:26:03 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:26:03 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:03 - RouteDefinition matched: transaction-service
-2025-07-04 11:26:03 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:26:03 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:03 - RouteDefinition matched: fine-service
-2025-07-04 11:26:03 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:26:03 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:03 - RouteDefinition matched: notification-service
-2025-07-04 11:26:03 - New routes count: 5
-2025-07-04 11:26:33 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:26:33 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:33 - RouteDefinition matched: book-service
-2025-07-04 11:26:33 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:26:33 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:33 - RouteDefinition matched: member-service
-2025-07-04 11:26:33 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:26:33 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:33 - RouteDefinition matched: transaction-service
-2025-07-04 11:26:33 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:26:33 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:33 - RouteDefinition matched: fine-service
-2025-07-04 11:26:33 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:26:33 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:26:33 - RouteDefinition matched: notification-service
-2025-07-04 11:26:33 - New routes count: 5
-2025-07-04 11:27:03 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:27:03 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:27:03 - RouteDefinition matched: book-service
-2025-07-04 11:27:03 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:27:03 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:27:03 - RouteDefinition matched: member-service
-2025-07-04 11:27:03 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:27:03 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:27:03 - RouteDefinition matched: transaction-service
-2025-07-04 11:27:03 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:27:03 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:27:03 - RouteDefinition matched: fine-service
-2025-07-04 11:27:03 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:27:03 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:27:03 - RouteDefinition matched: notification-service
-2025-07-04 11:27:03 - New routes count: 5
-2025-07-04 11:53:45 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:53:45 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:53:45 - RouteDefinition matched: book-service
-2025-07-04 11:53:45 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:53:45 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:53:45 - RouteDefinition matched: member-service
-2025-07-04 11:53:45 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:53:45 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:53:45 - RouteDefinition matched: transaction-service
-2025-07-04 11:53:45 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:53:45 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:53:45 - RouteDefinition matched: fine-service
-2025-07-04 11:53:45 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:53:45 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:53:45 - RouteDefinition matched: notification-service
-2025-07-04 11:53:45 - New routes count: 5
-2025-07-04 11:53:54 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/logout', method=POST}
-2025-07-04 11:53:54 - Request 'GET /actuator/health' doesn't match 'POST /logout'
-2025-07-04 11:53:54 - No matches found
-2025-07-04 11:53:54 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/actuator/**', method=null}
-2025-07-04 11:53:54 - Checking match of request : '/actuator/health'; against '/actuator/**'
-2025-07-04 11:53:54 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/swagger-ui/**', method=null}
-2025-07-04 11:53:54 - Request 'GET /actuator/health' doesn't match 'null /swagger-ui/**'
-2025-07-04 11:53:54 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/v3/api-docs/**', method=null}
-2025-07-04 11:53:54 - Request 'GET /actuator/health' doesn't match 'null /v3/api-docs/**'
-2025-07-04 11:53:54 - matched
-2025-07-04 11:53:54 - Checking authorization on '/actuator/health' using org.springframework.security.config.web.server.ServerHttpSecurity$AuthorizeExchangeSpec$Access$$Lambda/0x000001eba4521170@45b4302a
-2025-07-04 11:53:54 - Authorization successful
-2025-07-04 11:53:54 - No SecurityContext found in WebSession: 'org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession@2f6f463c'
-2025-07-04 11:54:15 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
-2025-07-04 11:54:15 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:54:15 - RouteDefinition matched: book-service
-2025-07-04 11:54:15 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
-2025-07-04 11:54:15 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:54:15 - RouteDefinition matched: member-service
-2025-07-04 11:54:15 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
-2025-07-04 11:54:15 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:54:15 - RouteDefinition matched: transaction-service
-2025-07-04 11:54:15 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
-2025-07-04 11:54:15 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:54:15 - RouteDefinition matched: fine-service
-2025-07-04 11:54:15 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
-2025-07-04 11:54:15 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
-2025-07-04 11:54:15 - RouteDefinition matched: notification-service
-2025-07-04 11:54:15 - New routes count: 5
-2025-07-04 11:54:35 - Unregistering application API-GATEWAY with eureka with status DOWN
-2025-07-04 11:54:35 - Saw local status change event StatusChangeEvent [timestamp=1751610275380, current=DOWN, previous=UP]
-2025-07-04 11:54:35 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080: registering service...
-2025-07-04 11:54:35 - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://admin:admin@localhost:8761/eureka/} exception=I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": The target server failed to respond stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": The target server failed to respond
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:905)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:885)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:781)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:663)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: org.apache.hc.core5.http.NoHttpResponseException: The target server failed to respond
-	at org.apache.hc.core5.http.impl.io.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:301)
-	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:175)
-	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:218)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$InternalConnectionEndpoint.execute(PoolingHttpClientConnectionManager.java:712)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.execute(InternalExecRuntime.java:216)
-	at org.apache.hc.client5.http.impl.classic.MainClientExec.execute(MainClientExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:188)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.support.BasicAuthenticationInterceptor.intercept(BasicAuthenticationInterceptor.java:79)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:879)
-	... 21 more
-
-2025-07-04 11:54:35 - Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": The target server failed to respond
-2025-07-04 11:54:35 - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://admin:admin@localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connection reset stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connection reset
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:905)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:885)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:781)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:663)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
-	at org.apache.hc.core5.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:149)
-	at org.apache.hc.core5.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
-	at org.apache.hc.core5.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:247)
-	at org.apache.hc.core5.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:54)
-	at org.apache.hc.core5.http.impl.io.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:299)
-	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:175)
-	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:218)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$InternalConnectionEndpoint.execute(PoolingHttpClientConnectionManager.java:712)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.execute(InternalExecRuntime.java:216)
-	at org.apache.hc.client5.http.impl.classic.MainClientExec.execute(MainClientExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:188)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.support.BasicAuthenticationInterceptor.intercept(BasicAuthenticationInterceptor.java:79)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:879)
-	... 22 more
-
-2025-07-04 11:54:35 - Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connection reset
-2025-07-04 11:54:35 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080 - registration failed Cannot execute request on any known server
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-07-04 11:54:35 - There was a problem with the instance info replicator
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-07-04 11:54:36 - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://admin:admin@localhost:8761/eureka/}, exception=I/O error on PUT request for "http://localhost:8761/eureka/apps/API-GATEWAY/LTIN624146.cts.com:api-gateway:8080": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on PUT request for "http://localhost:8761/eureka/apps/API-GATEWAY/LTIN624146.cts.com:api-gateway:8080": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:905)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:885)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:781)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:663)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:99)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:837)
-	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1401)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:751)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:85)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:113)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:181)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:447)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.support.BasicAuthenticationInterceptor.intercept(BasicAuthenticationInterceptor.java:79)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:879)
-	... 20 more
-
-2025-07-04 11:54:36 - Request execution failed with message: I/O error on PUT request for "http://localhost:8761/eureka/apps/API-GATEWAY/LTIN624146.cts.com:api-gateway:8080": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-2025-07-04 11:54:36 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080 - was unable to send heartbeat!
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:837)
-	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1401)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-07-04 11:54:37 - Shutting down DiscoveryClient ...
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  29:27 min
-[INFO] Finished at: 2025-07-04T11:54:40+05:30
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.0:run (default-cli) on project api-gateway: Process terminated with exit code: 1 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [After]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Before]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Between]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Cookie]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Header]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Host]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Method]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Path]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Query]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [ReadBody]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [RemoteAddr]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [Weight]
+2025-07-10 10:51:02 - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-07-10 10:51:02 - Exposing 2 endpoint(s) beneath base path '/actuator'
+2025-07-10 10:51:02 - Eureka HTTP Client uses RestTemplate.
+2025-07-10 10:51:02 - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-07-10 10:51:02 - Setting initial instance status as: STARTING
+2025-07-10 10:51:02 - Initializing Eureka in region us-east-1
+2025-07-10 10:51:02 - Resolving eureka endpoints via configuration
+2025-07-10 10:51:02 - Disable delta property : false
+2025-07-10 10:51:02 - Single vip registry refresh property : null
+2025-07-10 10:51:02 - Force full registry fetch : false
+2025-07-10 10:51:02 - Application is null : false
+2025-07-10 10:51:02 - Registered Applications size is zero : true
+2025-07-10 10:51:02 - Application version is -1: true
+2025-07-10 10:51:02 - Getting all instance registry info from the eureka server
+2025-07-10 10:51:03 - The response status is 200
+2025-07-10 10:51:03 - Starting heartbeat executor: renew interval is: 10
+2025-07-10 10:51:03 - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-07-10 10:51:03 - Discovery Client initialized at timestamp 1752124863502 with initial instances count: 0
+2025-07-10 10:51:03 - Registering application API-GATEWAY with eureka with status UP
+2025-07-10 10:51:03 - Saw local status change event StatusChangeEvent [timestamp=1752124863507, current=UP, previous=STARTING]
+2025-07-10 10:51:03 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080: registering service...
+2025-07-10 10:51:03 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
+2025-07-10 10:51:03 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: book-service
+2025-07-10 10:51:03 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
+2025-07-10 10:51:03 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: member-service
+2025-07-10 10:51:03 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
+2025-07-10 10:51:03 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: transaction-service
+2025-07-10 10:51:03 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
+2025-07-10 10:51:03 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: fine-service
+2025-07-10 10:51:03 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
+2025-07-10 10:51:03 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: notification-service
+2025-07-10 10:51:03 - New routes count: 5
+2025-07-10 10:51:03 - Netty started on port 8080
+2025-07-10 10:51:03 - Updating port to 8080
+2025-07-10 10:51:03 - RouteDefinition book-service applying {_genkey_0=/api/books/**} to Path
+2025-07-10 10:51:03 - RouteDefinition book-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: book-service
+2025-07-10 10:51:03 - RouteDefinition member-service applying {_genkey_0=/api/members/**} to Path
+2025-07-10 10:51:03 - RouteDefinition member-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: member-service
+2025-07-10 10:51:03 - RouteDefinition transaction-service applying {_genkey_0=/api/transactions/**} to Path
+2025-07-10 10:51:03 - RouteDefinition transaction-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: transaction-service
+2025-07-10 10:51:03 - RouteDefinition fine-service applying {_genkey_0=/api/fines/**} to Path
+2025-07-10 10:51:03 - RouteDefinition fine-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: fine-service
+2025-07-10 10:51:03 - RouteDefinition notification-service applying {_genkey_0=/api/notifications/**} to Path
+2025-07-10 10:51:03 - RouteDefinition notification-service applying filter {_genkey_0=Access-Control-Allow-Credentials Access-Control-Allow-Origin} to DedupeResponseHeader
+2025-07-10 10:51:03 - RouteDefinition matched: notification-service
+2025-07-10 10:51:03 - New routes count: 5
+2025-07-10 10:51:03 - Started ApiGatewayApplication in 4.675 seconds (process running for 5.179)
+2025-07-10 10:51:03 - DiscoveryClient_API-GATEWAY/LTIN624146.cts.com:api-gateway:8080 - registration status: 204

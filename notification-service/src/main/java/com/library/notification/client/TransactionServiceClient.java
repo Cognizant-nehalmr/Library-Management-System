@@ -12,4 +12,7 @@ public interface TransactionServiceClient {
     
     @GetMapping("/api/transactions/overdue")
     ResponseEntity<List<Map<String, Object>>> getOverdueTransactions();
+
+    @GetMapping("/api/transactions/{id}")
+    ResponseEntity<Map<String, Object>> getTransactionById(Long id);
 }

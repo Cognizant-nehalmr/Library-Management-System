@@ -78,44 +78,52 @@ public class NotificationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdNotification);
     }
 
-    @PostMapping("/due-reminder")
-    @Operation(summary = "Create due reminder", description = "Create a due reminder notification")
-    public ResponseEntity<NotificationDTO> createDueReminder(@RequestBody Map<String, Object> request) {
-        Long memberId = Long.valueOf(request.get("memberId").toString());
-        String memberEmail = request.get("memberEmail").toString();
-        String bookTitle = request.get("bookTitle").toString();
-        String dueDate = request.get("dueDate").toString();
-
-        NotificationDTO notification = notificationService.createDueReminderNotification(
-                memberId, memberEmail, bookTitle, dueDate);
-        return ResponseEntity.status(HttpStatus.CREATED).body(notification);
+    @PostMapping("/fines/process")
+    public ResponseEntity<String> triggerFineNotifications() {
+        notificationService.processPendingFineNotifications();
+        return ResponseEntity.ok("Fine notifications processing triggered.");
     }
 
-    @PostMapping("/overdue-alert")
-    @Operation(summary = "Create overdue alert", description = "Create an overdue book alert notification")
-    public ResponseEntity<NotificationDTO> createOverdueAlert(@RequestBody Map<String, Object> request) {
-        Long memberId = Long.valueOf(request.get("memberId").toString());
-        String memberEmail = request.get("memberEmail").toString();
-        String bookTitle = request.get("bookTitle").toString();
-        Integer overdueDays = Integer.valueOf(request.get("overdueDays").toString());
+    // @PostMapping("/due-reminder")
+    // @Operation(summary = "Create due reminder", description = "Create a due reminder notification")
+    // public ResponseEntity<NotificationDTO> createDueReminder(@RequestBody Map<String, Object> request) {
+    //     Long memberId = Long.valueOf(request.get("memberId").toString());
+    //     String memberEmail = request.get("memberEmail").toString();
+    //     String bookTitle = request.get("bookTitle").toString();
+    //     String dueDate = request.get("dueDate").toString();
 
-        NotificationDTO notification = notificationService.createOverdueNotification(
-                memberId, memberEmail, bookTitle, overdueDays);
-        return ResponseEntity.status(HttpStatus.CREATED).body(notification);
-    }
+    //     NotificationDTO notification = notificationService.createDueReminderNotification(
+    //             memberId, memberEmail, bookTitle, dueDate);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(notification);
+    // }
 
-    @PostMapping("/fine-notice")
-    @Operation(summary = "Create fine notice", description = "Create a fine notice notification")
-    public ResponseEntity<NotificationDTO> createFineNotice(@RequestBody Map<String, Object> request) {
-        Long memberId = Long.valueOf(request.get("memberId").toString());
-        String memberEmail = request.get("memberEmail").toString();
-        String bookTitle = request.get("bookTitle").toString();
-        String fineAmount = request.get("fineAmount").toString();
+    // @PostMapping("/overdue-alert")
+    // @Operation(summary = "Create overdue alert", description = "Create an overdue book alert notification")
+    // public void createOverdueAlert(@RequestBody Map<String, Object> request) {
+    //     Long memberId = Long.valueOf(request.get("memberId").toString());
+    //     String memberEmail = request.get("memberEmail").toString();
+    //     String bookTitle = request.get("bookTitle").toString();
+    //     String memberName = request.get("memberName").toString();
+    //     String dueDate = request.get("dueDate").toString();
+    //     Integer overdueDays = Integer.valueOf(request.get("overdueDays").toString());
 
-        NotificationDTO notification = notificationService.createFineNotification(
-                memberId, memberEmail, bookTitle, fineAmount);
-        return ResponseEntity.status(HttpStatus.CREATED).body(notification);
-    }
+
+    //     notificationService.createOverdueNotification(memberId, memberEmail, memberName, bookTitle, dueDate, overdueDays);
+    //     // return ResponseEntity.status(HttpStatus.CREATED).body(notification);
+    // }
+
+    // @PostMapping("/fine-notice")
+    // @Operation(summary = "Create fine notice", description = "Create a fine notice notification")
+    // public ResponseEntity<NotificationDTO> createFineNotice(@RequestBody Map<String, Object> request) {
+    //     Long memberId = Long.valueOf(request.get("memberId").toString());
+    //     String memberEmail = request.get("memberEmail").toString();
+    //     String bookTitle = request.get("bookTitle").toString();
+    //     String fineAmount = request.get("fineAmount").toString();
+
+    //     NotificationDTO notification = notificationService.createFineNotification(
+    //             memberId, memberEmail, bookTitle, fineAmount);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(notification);
+    // }
 
     @GetMapping("/stats")
     @Operation(summary = "Get notification statistics", description = "Retrieve notification statistics and metrics")
