@@ -101,3 +101,105 @@
 2025-07-10 10:51:25 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081
 2025-07-10 10:51:25 [main] INFO  c.l.book.BookServiceApplication - Started BookServiceApplication in 10.448 seconds (process running for 10.821)
 2025-07-10 10:51:25 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BOOK-SERVICE/LTIN624146.cts.com:book-service:8081 - registration status: 204
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-07-10 10:51:55 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-07-10 10:52:09 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-10 10:52:09 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-10 10:52:10 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-07-10 10:52:41 [http-nio-8081-exec-4] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 614 ms
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: update books set author=?,available_copies=?,created_at=?,genre=?,isbn=?,title=?,total_copies=?,updated_at=?,year_published=? where book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: update books set author=?,available_copies=?,created_at=?,genre=?,isbn=?,title=?,total_copies=?,updated_at=?,year_published=? where book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+Hibernate: select b1_0.book_id,b1_0.author,b1_0.available_copies,b1_0.created_at,b1_0.genre,b1_0.isbn,b1_0.title,b1_0.total_copies,b1_0.updated_at,b1_0.year_published from books b1_0 where b1_0.book_id=?
+2025-07-10 10:56:24 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:01:24 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:06:24 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:11:24 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:20:41 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m20s884ms988µs).
+2025-07-10 11:25:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:30:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:35:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:40:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:45:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:50:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 11:55:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:00:15 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:15:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m5s431ms462µs700ns).
+2025-07-10 12:19:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:24:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:29:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:34:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:39:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:46:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m36s318ms375µs300ns).
+2025-07-10 12:48:57 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 12:51:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m57s639ms952µs800ns).
+2025-07-10 12:55:25 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 13:41:41 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=43m49s720ms833µs500ns).
+2025-07-10 13:43:44 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 13:48:44 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 13:53:44 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 13:58:44 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 14:03:44 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 14:29:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=21m43s926ms633µs700ns).
+2025-07-10 14:29:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 14:34:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 14:39:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 14:47:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m22s882ms406µs600ns).
+2025-07-10 14:48:51 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 15:01:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m47s69ms965µs300ns).
+2025-07-10 15:04:08 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 15:44:39 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=40m3s205ms619µs800ns).
+2025-07-10 15:51:36 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m57s260ms288µs300ns).
+2025-07-10 15:52:09 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 15:57:09 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 16:42:57 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=43m21s269ms119µs200ns).
+2025-07-10 16:45:00 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 16:56:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m57s209ms516µs400ns).
+2025-07-10 17:00:43 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=48s736ms130µs400ns).
+2025-07-10 17:00:46 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 17:05:46 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 18:20:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h14m5s163ms278µs400ns).
+2025-07-10 18:20:22 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BOOK-SERVICE/LTIN624146.cts.com:book-service:8081 - Re-registering apps/BOOK-SERVICE
+2025-07-10 18:20:22 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BOOK-SERVICE/LTIN624146.cts.com:book-service:8081: registering service...
+2025-07-10 18:20:22 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BOOK-SERVICE/LTIN624146.cts.com:book-service:8081 - registration status: 204
+2025-07-10 18:20:22 [DiscoveryClient-1] WARN  c.n.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:68)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-07-10 18:24:21 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 18:27:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s260ms303µs100ns).
+2025-07-10 22:24:58 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h56m40s408ms680µs400ns).
+2025-07-10 22:25:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 22:30:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 22:35:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 22:40:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-07-10 22:44:20 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m53s954ms356µs700ns).
+2025-07-10 22:48:26 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m6s302ms637µs500ns).
+2025-07-10 22:48:58 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

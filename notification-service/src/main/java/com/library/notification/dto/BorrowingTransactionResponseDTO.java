@@ -37,4 +37,17 @@ public class BorrowingTransactionResponseDTO {
 
     public MemberDTO getMember() { return member; }
     public void setMember(MemberDTO member) { this.member = member; }
+
+    @Override
+    public String toString() {
+        return "BorrowingTransactionResponseDTO [transactionId=" + transactionId + ", borrowDate=" + borrowDate
+                + ", dueDate=" + dueDate + ", returnDate=" + returnDate + ", status=" + status + ", book=" + book
+                + ", member=" + member + ", getTransactionId()=" + getTransactionId() + ", getBorrowDate()="
+                + getBorrowDate() + ", getDueDate()=" + getDueDate() + ", getReturnDate()=" + getReturnDate()
+                + ", getStatus()=" + getStatus() + ", getBook()=" + getBook() + ", getMember()=" + getMember()
+                + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+                + "]";
+    }
+
+    
 }

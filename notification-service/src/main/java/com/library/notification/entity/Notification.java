@@ -110,7 +110,7 @@ public class Notification {
     public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
 
     public enum NotificationType {
-        DUE_REMINDER, OVERDUE_ALERT, FINE_NOTICE, WELCOME, BOOK_AVAILABLE, MEMBERSHIP_EXPIRY
+        DUE_REMINDER, OVERDUE_ALERT, FINE_NOTICE, WELCOME, BOOK_AVAILABLE, CUSTOM
     }
 
     public enum NotificationStatus {

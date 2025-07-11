@@ -4,9 +4,12 @@ import com.library.notification.client.FineServiceClient;
 import com.library.notification.client.MemberServiceClient;
 import com.library.notification.client.TransactionServiceClient;
 import com.library.notification.dto.FineResponseDTO;
+import com.library.notification.dto.MemberDTO;
+import com.library.notification.dto.BorrowingTransactionResponseDTO;
 import com.library.notification.dto.FineDTO;
 import com.library.notification.dto.NotificationDTO;
 import com.library.notification.entity.Notification;
+import com.library.notification.entity.Notification.NotificationStatus;
 import com.library.notification.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -19,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -38,11 +42,8 @@ public class NotificationService {
     @Autowired
     private EmailService emailService;
 
-    // @Autowired
-    // private MemberServiceClient memberServiceClient;
-
-    // @Autowired
-    // private TransactionServiceClient transactionServiceClient;
+    @Autowired
+    private TransactionServiceClient transactionServiceClient;
 
     @Autowired
     private FineServiceClient fineServiceClient;
@@ -70,14 +71,41 @@ public class NotificationService {
                 .collect(Collectors.toList());
     }
 
-    public NotificationDTO createNotification(NotificationDTO notificationDTO) {
-        Notification notification = convertToEntity(notificationDTO);
-        Notification savedNotification = notificationRepository.save(notification);
+    @Async
+    public void sendCustomEmail(Long memberId, String memberName, String memberEmail, String subject, String customMessage) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("memberName", memberName); 
+        variables.put("subject", subject);
+        variables.put("customMessage", customMessage);
+        
 
-        // Send notification asynchronously
-        sendNotificationAsync(savedNotification);
+        try {
+            // Send email
+            emailService.sendHtmlEmail(memberEmail, subject, "custom-email-template", variables);
 
-        return convertToDTO(savedNotification);
+            // Save success notification
+            Notification notification = convertToEntity(new NotificationDTO(
+                    memberId,
+                    "Custom email sent successfully.",
+                    Notification.NotificationType.CUSTOM,
+                    memberEmail,
+                    subject));
+            notification.setStatus(Notification.NotificationStatus.SENT);
+            notification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(notification);
+
+        } catch (Exception e) {
+            // Save failed notification
+            Notification failedNotification = convertToEntity(new NotificationDTO(
+                    memberId,
+                    "Failed to send custom email: " + e.getMessage(),
+                    Notification.NotificationType.CUSTOM,
+                    memberEmail,
+                    subject));
+            failedNotification.setStatus(Notification.NotificationStatus.FAILED);
+            failedNotification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(failedNotification);
+        }
     }
 
     @Async
@@ -114,70 +142,80 @@ public class NotificationService {
                 });
     }
 
-    // public NotificationDTO createDueReminderNotification(Long memberId, String
-    // memberEmail,
-    // String bookTitle, String dueDate) {
-    // String subject = "Book Due Reminder - Library Management System";
-    // String message = String.format(
-    // "Dear Member,\n\nThis is a reminder that your borrowed book '%s' is due on
-    // %s. " +
-    // "Please return it on time to avoid any fines.\n\nThank you,\nLibrary
-    // Management System",
-    // bookTitle, dueDate);
+    @Async
+    public void processUpcomingDueAlerts() {
+        List<BorrowingTransactionResponseDTO> transactions = transactionServiceClient.getAllTransactions();
 
-    // NotificationDTO notification = new NotificationDTO(
-    // memberId, message, Notification.NotificationType.DUE_REMINDER, memberEmail,
-    // subject);
+        LocalDate today = LocalDate.now();
+        LocalDate upcomingLimit = today.plusDays(3);
 
-    // return createNotification(notification);
-    // }
+        transactions.stream()
+                .filter(transaction -> transaction.getDueDate() != null &&
+                        !transaction.getDueDate().isBefore(today) && // dueDate >= today
+                        !transaction.getDueDate().isAfter(upcomingLimit) && // dueDate <= today + 3
+                        transaction.getStatus() != null && transaction.getStatus().equals("BORROWED") &&
+                        transaction.getMember() != null &&
+                        transaction.getBook() != null)
+                .forEach(transaction -> {
+                    try {
+                        Long memberId = transaction.getMember().getMemberId();
+                        String memberEmail = transaction.getMember().getEmail();
+                        String memberName = transaction.getMember().getName();
+                        String bookTitle = transaction.getBook().getTitle();
+                        String dueDate = transaction.getDueDate().toString();
 
-    // @Async
-    // public void createOverdueNotification(Long memberId, String memberEmail,
-    // String memberName, String bookTitle,
-    // String dueDate, int overdueDays) {
-    // String subject = "Overdue Book Alert - Library Management System";
+                        // Send upcoming due date alert
+                        System.out.println(transaction.getMember().getName()
+                                + "                                                                                    ");
+                        createOverdueAlert(memberId, memberEmail, memberName, bookTitle, dueDate);
 
-    // // 1. Prepare Thymeleaf variables
-    // Map<String, Object> variables = new HashMap<>();
-    // variables.put("memberName", memberName);
-    // variables.put("bookTitle", bookTitle);
-    // variables.put("dueDate", dueDate); // Format: "2025-07-15"
+                    } catch (Exception e) {
+                        log.error("Failed to send due soon alert for transactionId: {}, error: {}",
+                                transaction.getTransactionId(), e.getMessage(), e);
+                    }
+                });
+    }
 
-    // try {
-    // // 2. Send HTML email
-    // emailService.sendHtmlEmail(
-    // memberEmail,
-    // subject,
-    // "due-reminder", // Thymeleaf template name without `.html`
-    // variables);
+    @Async
+    public void createOverdueAlert(Long memberId, String memberEmail, String memberName, String bookTitle,
+            String dueDate) {
+        String subject = "Overdue Alert - Library Management System";
 
-    // // 3. Create notification object with status SENT
-    // NotificationDTO notification = new NotificationDTO(
-    // memberId,
-    // "HTML Email Sent: Overdue Book Alert", // Message for record/log
-    // Notification.NotificationType.OVERDUE_ALERT,
-    // memberEmail,
-    // subject);
-    // notification.setStatus(Notification.NotificationStatus.SENT);
-    // notification.setDateSent(LocalDateTime.now());
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("memberName", memberName);
+        variables.put("bookTitle", bookTitle);
+        variables.put("dueDate", dueDate);
 
-    // // return createNotification(notification);
+        try {
+            emailService.sendHtmlEmail(memberEmail, subject, "due-reminder", variables);
+            // NotificationDTO notificationDTO = ;
+            Notification successfullNotification = convertToEntity(new NotificationDTO(
+                    memberId,
+                    "An overdue alert email has been sent.",
+                    Notification.NotificationType.OVERDUE_ALERT,
+                    memberEmail,
+                    subject));
+            successfullNotification.setStatus(NotificationStatus.SENT);
+            successfullNotification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(successfullNotification);
 
-    // } catch (Exception e) {
-    // // 4. On failure
-    // NotificationDTO notification = new NotificationDTO(
-    // memberId,
-    // "Failed to send overdue alert email: " + e.getMessage(),
-    // Notification.NotificationType.OVERDUE_ALERT,
-    // memberEmail,
-    // subject);
-    // notification.setStatus(Notification.NotificationStatus.FAILED);
-    // notification.setErrorMessage(e.getMessage());
+            // save notification (optional)
+            // createNotification(notification);
 
-    // // return createNotification(notification);
-    // }
-    // }
+        } catch (Exception e) {
+            // NotificationDTO failedNotification =
+            Notification failedNotification = convertToEntity(new NotificationDTO(
+                    memberId,
+                    "Failed to send overdue alert email: " + e.getMessage(),
+                    Notification.NotificationType.OVERDUE_ALERT,
+                    memberEmail,
+                    subject));
+            failedNotification.setStatus(NotificationStatus.FAILED);
+            failedNotification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(failedNotification);
+            // createNotification(failedNotification);
+        }
+    }
 
     @Async
     public void createFineNotification(Long memberId, String memberEmail, String memberName, String bookTitle,
@@ -194,62 +232,29 @@ public class NotificationService {
         try {
             // Send HTML email using Thymeleaf template
             emailService.sendHtmlEmail(memberEmail, subject, "fine-notification-template", variables);
-        } catch (Exception e) {
-            // Create failure notification with error message
-            NotificationDTO notification = new NotificationDTO(
+            Notification successfulNotification = convertToEntity(new NotificationDTO(
                     memberId,
-                    "Failed to send fine notification email: " + e.getMessage(),
+                    "An Fine alert email has been sent.",
                     Notification.NotificationType.FINE_NOTICE,
                     memberEmail,
-                    subject);
-            createNotification(notification);
+                    subject));
+            successfulNotification.setStatus(Notification.NotificationStatus.SENT);
+            successfulNotification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(successfulNotification);
+        } catch (Exception e) {
+            // Create failure notification with error message
+            Notification failedNotification = convertToEntity(new NotificationDTO(
+                    memberId,
+                    "An Fine alert email failed to send..",
+                    Notification.NotificationType.FINE_NOTICE,
+                    memberEmail,
+                    subject));
+            failedNotification.setStatus(Notification.NotificationStatus.FAILED);
+            failedNotification.setDateSent(LocalDateTime.now());
+            notificationRepository.save(failedNotification);
+            // createNotification(notification);
+
             log.error("Error sending fine email to {}: {}", memberEmail, e.getMessage(), e);
-        }
-    }
-
-    @Async
-    public void sendNotificationAsync(Notification notification) {
-        try {
-            if (notification.getRecipientEmail() != null && !notification.getRecipientEmail().isEmpty()) {
-                emailService.sendSimpleEmail(
-                        notification.getRecipientEmail(),
-                        notification.getSubject(),
-                        notification.getMessage());
-
-                notification.setStatus(Notification.NotificationStatus.SENT);
-                notification.setDateSent(LocalDateTime.now());
-            } else {
-                notification.setStatus(Notification.NotificationStatus.FAILED);
-                notification.setErrorMessage("No recipient email provided");
-            }
-        } catch (Exception e) {
-            notification.setStatus(Notification.NotificationStatus.FAILED);
-            notification.setErrorMessage(e.getMessage());
-            notification.setRetryCount(notification.getRetryCount() + 1);
-        }
-
-        notificationRepository.save(notification);
-    }
-
-    @Scheduled(fixedRate = 300000) // Run every 5 minutes
-    public void processPendingNotifications() {
-        List<Notification> pendingNotifications = notificationRepository.findPendingNotifications();
-
-        for (Notification notification : pendingNotifications) {
-            if (notification.getRetryCount() < 3) {
-                sendNotificationAsync(notification);
-            }
-        }
-    }
-
-    @Scheduled(cron = "0 0 9 * * ?") // Run daily at 9 AM
-    public void sendDueReminders() {
-        try {
-            // This would integrate with transaction service to get due books
-            // For now, we'll create a placeholder implementation
-            System.out.println("Processing due reminders at: " + LocalDateTime.now());
-        } catch (Exception e) {
-            System.err.println("Error processing due reminders: " + e.getMessage());
         }
     }
 

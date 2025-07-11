@@ -4,6 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.library.notification.dto.BorrowingTransactionResponseDTO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -15,4 +17,8 @@ public interface TransactionServiceClient {
 
     @GetMapping("/api/transactions/{id}")
     ResponseEntity<Map<String, Object>> getTransactionById(Long id);
+
+    @GetMapping("/api/transactions")
+    List<BorrowingTransactionResponseDTO> getAllTransactions();
+    
 }
