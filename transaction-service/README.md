@@ -174,8 +174,8 @@ This service may call:
 - **Book Service**: to confirm and update available copies
 ---
 ## UI Section
-- [Dashboard](dashboard.png)
-- [Transaction](transaction.png)
+![Dashboard](./assets/dashboard.png)
+![Transaction](./assets/transaction.png)
 
 ---
 
