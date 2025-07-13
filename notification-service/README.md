@@ -165,8 +165,8 @@ sequenceDiagram
 ```
 ---
 ## UI Section
-- [Dashboard](dashboard/png)
-- [Notification](notification.png)
+![Dashboard](./assets/dashboard.png)
+![Notification](./assets/notification.png)
 
 ##  Run Locally
 ```bash
