@@ -112,7 +112,7 @@ flowchart TD
 
 The Library Management System is built using a microservices architecture. Each module handles a specific business capability and communicates via REST APIs. Below is a quick summary:
 
-### Book Service
+### [Book Service](./book-service/README.md)
 Handles the library's book catalog. Responsible for adding, updating, searching, and listing books, along with managing availability status (e.g., available, issued, reserved).
 - [Book Service](./book-service/README.md)
 
