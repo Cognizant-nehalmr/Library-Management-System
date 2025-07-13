@@ -153,8 +153,8 @@ sequenceDiagram
 ```
 ---
 ##  UI Section
-- [Dashboard](dashboard.png)
-- [Book Management](book_management.png)
+- [Dashboard](./assets/dashboard.png)
+- [Book Management](./assets/book.png)
 ---
 ##  Run Locally
 ```bash
