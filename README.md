@@ -114,28 +114,28 @@ The Library Management System is built using a microservices architecture. Each 
 
 ### [Book Service](./book-service/README.md)
 Handles the library's book catalog. Responsible for adding, updating, searching, and listing books, along with managing availability status (e.g., available, issued, reserved).
-- [Book Service](./book-service/README.md)
 
-### Member Service
+
+### [Member Service](./member-service/README.md)
 Manages all library members: registration, updates, lookups, and status changes. Exposes endpoints to search and retrieve member details and supports member lifecycle management.
-- [Member Service](./member-service/README.md)
 
-### Transaction Service
+
+### [Transaction Service](./transaction-service/README.md)
 Manages the issuance and return of books by members. Ensures book availability, tracks due dates, and maintains borrowing history. Coordinates with both Member and Book services.
-- [Transaction Service](./transaction-service/README.md)
-###  Fine Service
-Calculates and manages overdue fines for borrowed books. It tracks return deadlines, applies configurable penalty rules, and exposes endpoints for querying outstanding dues. Integrates with the Borrowing Service to detect overdue returns and can trigger notifications via the Notification Service.
-- [Fine Service](./fine-service/README.md)
 
-###  Notification Service
+### [Fine Service](./fine-service/README.md)
+Calculates and manages overdue fines for borrowed books. It tracks return deadlines, applies configurable penalty rules, and exposes endpoints for querying outstanding dues. Integrates with the Borrowing Service to detect overdue returns and can trigger notifications via the Notification Service.
+
+
+### [ Notification Service](./notification-service/README.md)
 Sends alerts and reminders to users. Used to notify members about upcoming due dates, overdue returns, registration confirmations, and system messages (via email, SMS, etc.).
-- [ Notification Service](./notification-service/README.md)
+
   
-### API Gateway
+### [API Gateway](./api-gateway)
 Provides a unified entry point to route incoming client requests to appropriate microservices. Also handles load balancing, logging, and cross-cutting concerns.
 Access the API documentation at `http://localhost:8080/swagger-ui.html`.
 
-###  Discovery Server (Eureka)
+###  [Discovery Server (Eureka)](eureka-server)
 Acts as a service registry where all microservices register themselves. Enables dynamic service discovery and communication within the ecosystem.
 
 Eureka Discovery : http://localhost:8761/
@@ -145,10 +145,11 @@ Eureka Discovery : http://localhost:8761/
 1. Clone the repository:
    ```bash
    git clone repository
-   cd LMS
+   cd /Library-Management-System
    ```
 2. Build and run the application:
    ```bash
+   cd {service-name}
    mvn spring-boot:run
    ```
 
