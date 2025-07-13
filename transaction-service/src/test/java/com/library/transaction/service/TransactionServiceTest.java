@@ -5,6 +5,9 @@ import com.library.transaction.dto.BorrowingTransactionResponseDTO;
 import com.library.transaction.entity.BorrowingTransaction;
 import com.library.transaction.repository.BorrowingTransactionRepository;
 import com.library.transaction.client.BookServiceClient;
+import com.library.transaction.client.MemberServiceClient;
+import com.library.transaction.dto.BookDTO;
+import com.library.transaction.dto.MemberDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,6 +25,8 @@ class TransactionServiceTest {
     private BorrowingTransactionRepository transactionRepository;
     @Mock
     private BookServiceClient bookServiceClient;
+    @Mock
+    private MemberServiceClient memberServiceClient;
     @InjectMocks
     private TransactionService transactionService;
 
@@ -35,11 +40,22 @@ class TransactionServiceTest {
         BorrowingTransaction tx = new BorrowingTransaction();
         tx.setTransactionId(1L);
         tx.setBookId(2L);
+        tx.setMemberId(3L);
         when(transactionRepository.findById(1L)).thenReturn(Optional.of(tx));
+
+        BookDTO book = new BookDTO();
+        book.setBookId(2L);
+        when(bookServiceClient.getBookById(2L)).thenReturn(org.springframework.http.ResponseEntity.ok(book));
+
+        MemberDTO member = new MemberDTO();
+        member.setMemberId(3L);
+        when(memberServiceClient.getMemberById(3L)).thenReturn(org.springframework.http.ResponseEntity.ok(member));
+
         Optional<BorrowingTransactionResponseDTO> result = transactionService.getTransactionById(1L);
         assertTrue(result.isPresent());
         assertEquals(1L, result.get().getTransactionId());
         assertEquals(2L, result.get().getBook().getBookId());
+        assertEquals(3L, result.get().getMember().getMemberId());
     }
 
     @Test
