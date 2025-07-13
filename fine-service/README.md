@@ -173,8 +173,8 @@ sequenceDiagram
 
 ---
 ## UI Section
-- [Dashboard](dashboard.png)
-- [Fine](fine.png)
+![Dashboard](./assets/dashboard.png)
+![Fine](./assets/fine.png)
   
 ---
 
