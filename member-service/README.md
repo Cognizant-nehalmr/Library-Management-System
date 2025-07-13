@@ -187,8 +187,8 @@ sequenceDiagram
 
 ---
 ## UI Section
-- [Dashboard](dashboard.png)
-- [Member Management](member_management.png)
+![Dashboard](dashboard.png)
+![Member Management](member.png)
 ---
 ##  Run Locally
 ```bash
