@@ -160,7 +160,7 @@ mvn test
 ---
 
 ## Contributing
-Contributions are welcome! Please see the [Contributing](CONTRIBUTING.md)
+Contributions are welcome! Please see the [CONTRIBUTING](CONTRIBUTING.md)
 
 ## License
 This project is licensed under the [MIT License](LICENSE)
