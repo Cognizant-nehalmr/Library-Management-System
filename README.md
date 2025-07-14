@@ -46,50 +46,32 @@ The Library Management System (LMS) is a RESTful API-based backend application d
 ## Architecture Diagram
 ```mermaid
 flowchart TD
- 
   subgraph Client [Client Applications]
     A[Web App]
-    B[Mobile App]
   end
- 
-  subgraph Gateway [API Gateway]
     C[API Gateway]
-  end
- 
-  subgraph Infra [Infrastructure Services]
-    D[Load Balancer]
     E[Discovery Service]
-    F[Config Service]
-  end
- 
   subgraph Services [Microservices]
-    G[User Service] --> GDB[(User DB)]
-    H[Book Service] --> HDB[(Book DB)]
-    I[Loan Service] --> IDB[(Loan DB)]
+    G[Book Service] --> GDB[(Book DB)]
+    H[Member Service] --> HDB[(Member DB)]
     J[Notification Service] --> JDB[(Notification DB)]
     J --> Queue[(Message Queue)]
-    K[Catalog Service] --> KDB[(Catalog DB)]
-    L[Recommendation Service] --> LDB[(Recommendation DB)]
+    K[Fine Service] --> KDB[(Fine DB)]
+    L[Transaction Service] --> LDB[(Transaction DB)]
   end
- 
-  subgraph External [External Services]
-    M[Remote Web Service]
-  end
- 
   %% Connections
   A --> C
-  B --> C
-  C --> D
-  D --> E
-  D --> F
-  C --> G
-  C --> H
-  C --> I
-  C --> J
-  C --> K
-  C --> L
-  L --> M
- 
+  C <--> E
+  C <--> G
+  C <--> H
+  C <--> J
+  C <--> K
+  C <--> L
+  E <--> G
+  E <--> H
+  E <--> J
+  E <--> K
+  E <--> L
   %% Styling
   classDef client fill:#e3f2fd,stroke:#2196f3,color:#0d47a1
   classDef gateway fill:#fff3e0,stroke:#ff9800,color:#e65100
@@ -98,7 +80,6 @@ flowchart TD
   classDef external fill:#fce4ec,stroke:#f06292,color:#880e4f
   classDef db fill:#f3e5f5,stroke:#ab47bc,color:#4a148c
   classDef queue fill:#fffde7,stroke:#fbc02d,color:#f57f17
- 
   class A,B client
   class C gateway
   class D,E,F infra
